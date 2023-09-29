@@ -1,0 +1,15 @@
+{
+  "name": "entregafinala3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-backend": "cd src/backend && npm install",
+    "install-fronted": "cd src/fronted && npm install",
+    "backend": "cd src/backend && npm run start",
+    "frontend": "cd src/frontend && npm run dev",
+    "start": "npm run backend && npm run fronted"
+  },
+  "author": "",
+  "license": "ISC"
+}
