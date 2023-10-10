@@ -5,11 +5,15 @@
   "main": "index.js",
   "scripts": {
     "install-backend": "cd src/backend && npm install",
-    "install-fronted": "cd src/fronted && npm install",
+    "install-frontend": "cd src/frontend && npm install",
     "backend": "cd src/backend && npm run start",
     "frontend": "cd src/frontend && npm run dev",
-    "start": "npm run backend && npm run fronted"
+    "start": "concurrently \"npm:backend\" \"npm:frontend\"",
+    "start-all": "npm run install-backend && npm run install-frontend && npm run start"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
 }
