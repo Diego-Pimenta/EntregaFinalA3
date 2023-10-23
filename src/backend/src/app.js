@@ -1,10 +1,9 @@
-const express = require("express");
-const app = express();
+import express from "express";
+import { getDatabaseConnection } from "./database/connection.js";
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+const app = express();
+const db = getDatabaseConnection();
 
 app.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000"); // Ctrl + C para stopar o servidor
+  console.log("Servidor rodando na porta 3000");
 });

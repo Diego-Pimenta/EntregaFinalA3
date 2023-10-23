@@ -1,6 +1,7 @@
 import mysql from "mysql2";
-import { init } from "./db.init.js";
-import { examples } from "./db.examples.js";
+import { connectionUri } from "../configs/db.config.js";
+import { init } from "./queries/init.js";
+import { examples } from "./queries/examples.js";
 
 let instance = null;
 
@@ -14,7 +15,7 @@ export const getDatabaseConnection = () => {
 class DatabaseConnection {
   constructor() {
     try {
-      this.conn = mysql.createConnection("mysql://root:root@localhost:3306/", {
+      this.conn = mysql.createConnection(connectionUri, {
         multipleStatements: true,
       });
       this.createTables().then(() => this.insertExamples());
@@ -24,16 +25,9 @@ class DatabaseConnection {
     }
   }
 
-  // test method more precisely
   async query(sql) {
-    return new Promise((resolve, reject) => {
-      this.conn.query(sql, function (err, results, fields) {
-        if (err) {
-          reject(err);
-          return;
-        }
-        resolve(results);
-      });
+    this.conn.query(sql, function (err, results, fields) {
+      if (err) throw err;
     });
   }
 
