@@ -1,9 +1,27 @@
-export const findById = ``;
+export const createQuery = `
+   INSERT INTO users(username, email, password, birth_date, gender) VALUES (?, ?, ?, ?, ?);
+`;
 
-export const findAll = ``;
+export const deleteQuery = `
+   DELETE FROM users WHERE id = ?;
+`;
 
-export const insert = ``;
+export const findByIdQuery = `
+   SELECT * FROM users WHERE id = ?;
+`;
 
-export const delete = ``;
+export const findByUsernameQuery = `
+   SELECT * FROM users WHERE username = ?;
+`;
 
-export const update = ``;
+export const findByEmailQuery = `
+   SELECT * FROM users WHERE email = ?;
+`;
+
+export const findAllQuery = `
+   SELECT * FROM users;
+`;
+
+export const updateQuery = `
+   UPDATE users SET password = ? WHERE id = ?;
+`;
