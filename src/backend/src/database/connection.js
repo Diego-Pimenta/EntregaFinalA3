@@ -25,8 +25,8 @@ class DatabaseConnection {
     }
   }
 
-  async query(sql) {
-    this.conn.query(sql, function (err, results, fields) {
+  async query(sql, params = []) {
+    this.conn.query(sql, params, function (err, results) {
       if (err) throw err;
     });
   }
