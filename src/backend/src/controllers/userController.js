@@ -3,13 +3,13 @@ export class UserController {
     this.service = service;
   }
 
-  async create() {}
+  async create(req, res, next) {}
 
-  async findAll() {}
+  async findAll(req, res, next) {}
 
-  async findById() {}
+  async findById(req, res, next) {}
 
-  async delete() {}
+  async delete(req, res, next) {}
 
-  async update() {}
+  async update(req, res, next) {}
 }

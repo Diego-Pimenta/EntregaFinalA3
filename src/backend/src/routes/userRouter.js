@@ -1,19 +1,26 @@
 import { Router } from "express";
-import {} from "../middlewares/validation.js";
+import { validation } from "../middlewares/validation.js";
+import {
+  validateCreateUser,
+  validateUpdateUser,
+} from "./validations/validateUser.js";
 
-// alterações devem ser feitas após a conclusão do userController
 export const userRouter = (userController) => {
   const userRouter = Router();
   userRouter
     .route("/")
-    .get((req, res, next) => userController())
-    .post((req, res, next) => userController());
+    .get((req, res, next) => userController(req, res, next))
+    .post(validation(validateCreateUser), (req, res, next) =>
+      userController(req, res, next)
+    );
 
   userRouter
     .route("/:id")
-    .get((req, res, next) => userController())
-    .delete((req, res, next) => userController())
-    .put((req, res, next) => userController());
+    .get((req, res, next) => userController(req, res, next))
+    .delete((req, res, next) => userController(req, res, next))
+    .put(validation(validateUpdateUser), (req, res, next) =>
+      userController(req, res, next)
+    );
 
   return userRouter;
 };
