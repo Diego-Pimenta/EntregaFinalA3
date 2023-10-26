@@ -1,0 +1,11 @@
+import { UserController } from "../controllers/userController.js";
+import { UserRepository } from "../repositories/userRepository.js";
+import { UserService } from "../services/userService.js";
+import { userRouter } from "../routes/userRouter.js";
+
+export const userModule = (db) => {
+  const repository = new UserRepository(db);
+  const service = new UserService(repository);
+  const controller = new UserController(service);
+  return userRouter(controller);
+};

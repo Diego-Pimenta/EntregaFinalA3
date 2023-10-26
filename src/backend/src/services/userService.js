@@ -1,4 +1,4 @@
-import { HttpError } from "./exceptions/httpError";
+import { HttpError } from "./exceptions/httpError.js";
 
 export class UserService {
   constructor(repository) {

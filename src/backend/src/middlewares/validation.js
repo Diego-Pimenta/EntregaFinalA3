@@ -1,9 +1,10 @@
 export const validation = (validationFunction) => {
-  async (req, res, next) => {
-    const errors = validationFunction(req.body);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+  return async (req, res, next) => {
+    try {
+      validationFunction(req.body);
+      next();
+    } catch (error) {
+      res.status(400).json({ message: error.message, errors: error });
     }
-    next();
   };
 };
