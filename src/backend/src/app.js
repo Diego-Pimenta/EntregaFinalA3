@@ -1,9 +1,25 @@
-import express from "express";
+import express, { Router } from "express";
 import { getDatabaseConnection } from "./database/connection.js";
+import { userModule } from "./modules/userModule.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
-const app = express();
-const db = getDatabaseConnection();
+class App {
+  constructor() {
+    this.db = getDatabaseConnection();
+    this.app = express();
+    this.routes();
+    this.listen();
+  }
 
-app.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000");
-});
+  routes() {
+    const router = Router();
+    router.use("/users", userModule(this.db)).use(errorHandler);
+    this.app.use(router);
+  }
+
+  listen() {
+    this.app.listen(3000, () => {
+      console.log("Server started on port 3000");
+    });
+  }
+}

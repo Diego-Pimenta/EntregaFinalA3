@@ -29,7 +29,7 @@ class DatabaseConnection {
     return new Promise((resolve, reject) => {
       this.conn.query(sql, params, function (err, results) {
         if (err) return reject(err);
-        return resolve(results);
+        resolve(results);
       });
     });
   }

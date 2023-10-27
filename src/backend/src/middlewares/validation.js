@@ -4,7 +4,11 @@ export const validation = (validationFunction) => {
       validationFunction(req.body);
       next();
     } catch (error) {
-      res.status(400).json({ message: error.message, errors: error });
+      res.status(400).json({
+        success: false,
+        message: error.message,
+        errors: error,
+      });
     }
   };
 };

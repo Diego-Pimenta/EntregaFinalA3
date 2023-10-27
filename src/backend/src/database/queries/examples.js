@@ -14,37 +14,16 @@ export const examples = [
   `,
   `
   INSERT INTO games(id, user_id, title, description, genre, price, developed_by, release_date) VALUES
-  
-  (1, 1, 'Elden Ring', 'Os jogadores percorrem livremente pelo mundo aberto interativo, onde os elementos de jogabilidade incluem combate,
-   com vários tipos de armas e feitiços mágicos, passeios a cavalo e crafting.', 'RPG', 229.99, 'FromSoftware', '2022-02-25'),
-  
-  (2, 1, 'Sekiro', 'O jogo se passa em uma versão mágica e fictícia do período Sengoku no Japão, e segue um shinobi 
-  que tenta se vingar de um clã samurai que o atacou e sequestrou seu lorde.', 'RPG', 274.00, 'FromSoftware', '2019-03-22'),
-  
-  (3, 3, 'Cyberpunk 2077', ' A história do jogo é ambientada em Night City, um mundo aberto situado no universo fictício de Cyberpunk. 
-  Ele é jogado a partir de uma perspectiva em primeira pessoa.', 'RPG', 199.99, 'CD Projekt', '2020-11-10'),
- 
-  (4, 3, 'Starfield', 'uma experiência de próxima geração totalmente nova, ambientada em um mundo com temática espacial totalmente novo',
-   'Mundo aberto', 299.99, 'Bethesda Game Studios', '2023-09-06'),
-  
-  (5, 4, 'The Elder Scrolls V: Skyrim ', 'Skyrim é um jogo de RPG que mantém a tradicional jogabilidade de mundo aberto encontrada na série 
-  The Elder Scrolls. O jogador é livre para andar pela terra de Skyrim a sua vontade.', 'Mundo aberto', 149.99, 'Bethesda Game Studios', '2011-11-11'),
-  
-  (6, 5, 'Baldur's Gate III', 'Baldur's Game III é um jogo eletrônico de RPG com elementos para um jogador e multijogador. Jogadores podem criar um 
-  ou mais personagens e formar um grupo ao lado de uma variedade de personagens', 'RPG', 199.99, 'Larian Studios', '2023-08-03'),
-  
-  (7, 7, 'The Legend of Zelda: Ocarina of Time', 'The Legend of Zelda: Ocarina é um jogo de ação e aventura e fantasia ambientado em um cenário expansivo.
-   O jogador controla o protagonista da série, a partir de uma perspectiva em terceira pessoa.', 'Ação-aventura', 29.99, 'Nintendo', '1998-11-21'),
-  
-  (8, 7, 'Doom', ' A série se passa em um universo distópico apocalíptico, gira em torno de um fuzileiro espacial lutando contra legiões de demônios e 
-  morto-vivos a fim de sobreviver e salvar a humanidade.', 'FPS', 29.99, 'id Software', '1993-11-10'),
-
-  (9, 7, 'Need for Speed: Underground 2', 'Underground 2 é um jogo de corrida desenvolvido pela EA Black Box e publicado pela Electronic Arts. É a oitava 
-  edição da série Need for Speed ​​e a sequência direta de Need for Speed: Underground.', 'Corrida', 19.99, 'Electronic Arts', '2004-11-09'),
-
-  (10, 9, 'Dying Light', 'Um jogo de ação e sobrevivência em primeira pessoa em um mundo aberto pós-apocalíptico tomado por zumbis comedores de carne humana. 
-  Atravesse uma cidade devastada por um vírus misterioso.', 'Mundo aberto', 74.99, 'Techland', '2015-01-26');
-
+  (1, 1, 'Elden Ring', 'Os jogadores percorrem livremente pelo mundo aberto interativo, onde os elementos de jogabilidade incluem combate, com vários tipos de armas e feitiços mágicos, passeios a cavalo e crafting.', 'RPG', 229.99, 'FromSoftware', '2022-02-25'),
+  (2, 1, 'Sekiro', 'O jogo se passa em uma versão mágica e fictícia do período Sengoku no Japão, e segue um shinobi que tenta se vingar de um clã samurai que o atacou e sequestrou seu lorde.', 'RPG', 274.00, 'FromSoftware', '2019-03-22'),
+  (3, 3, 'Cyberpunk 2077', ' A história do jogo é ambientada em Night City, um mundo aberto situado no universo fictício de Cyberpunk. Ele é jogado a partir de uma perspectiva em primeira pessoa.', 'RPG', 199.99, 'CD Projekt', '2020-11-10'),
+  (4, 3, 'Starfield', 'uma experiência de próxima geração totalmente nova, ambientada em um mundo com temática espacial totalmente novo', 'Mundo aberto', 299.99, 'Bethesda Game Studios', '2023-09-06'),
+  (5, 4, 'The Elder Scrolls V: Skyrim ', 'Skyrim é um jogo de RPG que mantém a tradicional jogabilidade de mundo aberto encontrada na série The Elder Scrolls. O jogador é livre para andar pela terra de Skyrim a sua vontade.', 'Mundo aberto', 149.99, 'Bethesda Game Studios', '2011-11-11'),
+  (6, 5, 'Baldur\'s Gate III', 'Baldur\'s Game III é um jogo eletrônico de RPG com elementos para um jogador e multijogador. Jogadores podem criar um ou mais personagens e formar um grupo ao lado de uma variedade de personagens', 'RPG', 199.99, 'Larian Studios', '2023-08-03'),
+  (7, 7, 'The Legend of Zelda: Ocarina of Time', 'The Legend of Zelda: Ocarina é um jogo de ação e aventura e fantasia ambientado em um cenário expansivo. O jogador controla o protagonista da série, a partir de uma perspectiva em terceira pessoa.', 'Ação-aventura', 29.99, 'Nintendo', '1998-11-21'),
+  (8, 7, 'Doom', ' A série se passa em um universo distópico apocalíptico, gira em torno de um fuzileiro espacial lutando contra legiões de demônios e morto-vivos a fim de sobreviver e salvar a humanidade.', 'FPS', 29.99, 'id Software', '1993-11-10'),
+  (9, 7, 'Need for Speed: Underground 2', 'Underground 2 é um jogo de corrida desenvolvido pela EA Black Box e publicado pela Electronic Arts. É a oitava edição da série Need for Speed ​​e a sequência direta de Need for Speed: Underground.', 'Corrida', 19.99, 'Electronic Arts', '2004-11-09'),
+  (10, 9, 'Dying Light', 'Um jogo de ação e sobrevivência em primeira pessoa em um mundo aberto pós-apocalíptico tomado por zumbis comedores de carne humana. Atravesse uma cidade devastada por um vírus misterioso.', 'Mundo aberto', 74.99, 'Techland', '2015-01-26');
   `,
   `
   INSERT INTO platforms(id, name) VALUES
@@ -74,7 +53,7 @@ export const examples = [
   (10, 9, 10, 7.3);
   `,
   `
-  INSERTO INTO statuses(id, user_id, game_id, status) VALUES
+  INSERT INTO statuses(id, user_id, game_id, status) VALUES
   (1, 1, 1, 'jogado'),
   (2, 1, 2, 'jogando'),
   (3, 3, 3, 'zerado'),
