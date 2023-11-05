@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #151617;
+}
+
+@media (min-width: 781px) and (max-width: 2000px) {
+    .tela-desktop {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .container-header {
+        width: 100%;
+        height: 100px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .container-main {
+        width: 723px;
+        height: 300px;
+        margin-top: 30px;
+    }
+
+    .container-title {
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        font-size: 25px;
+        font-style: bold;
+        font-weight: bold;
+    }
+
+    .container-plataforms {
+        margin-top: 10px;
+        width: 100%;
+        height: 50px;
+    }
+
+    .plataforms-list {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .container-btn {
+        margin-top: 60px;
+        width: 100%;
+        height: 50px;
+    }
+
+    .btn {
+        font-weight: 700;
+        font-size: 16px;
+        height: 50px;
+        width: 200px;
+        background-color: transparent;
+        color: #ee6c4d;
+        border-radius: 50px;
+        border: 2px solid #ee6c4d;
+        margin-left: 100px;
+    }
+
+    .btn:hover {
+        background-color: #ee6c4d;
+        color: #141b26;
+    }
+
+    .container-footer {
+        margin-top: 70px;
+        width: 100%;
+        height: 100px;
+        justify-content: center;
+        align-items: end;
+        display: flex;
+    }
+
+    .bg-image {
+        margin-top: 10px;
+        max-width: 100%;
+        height: 100vh;
+        position: absolute;
+        display: flex;
+        align-self: end;
+        pointer-events: none;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 780px) {
+    .tela-mobile {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-content {
+        width: 70%;
+        height: 550px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .container-header {
+        width: 100px;
+        height: 100px;
+    }
+
+    .container-title {
+        margin-top: 50px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        text-align: center;
+        width: 80%;
+        color: #FFF;
+    }
+
+    .container-plataforms {
+        margin-top: 20px;
+        width: 80%;
+    }
+
+    .plataforms-list {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .plataforms-list img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .container-btn {
+        margin-top: 60px;
+        width: 100%;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn {
+        font-weight: 700;
+        font-size: 16px;
+        height: 50px;
+        width: 200px;
+        background-color: transparent;
+        color: #ee6c4d;
+        border-radius: 50px;
+        border: 2px solid #ee6c4d;
+    }
+
+    .btn:hover {
+        background-color: #ee6c4d;
+        color: #141b26;
+    }
+
+    .container-footer {
+        margin-top: 100px;
+        font-size: 10px;
+    }
+
+    .bg-image {
+        margin-top: 10px;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        display: flex;
+        align-self: end;
+        justify-content: end;
+        pointer-events: none;
+    }
+}

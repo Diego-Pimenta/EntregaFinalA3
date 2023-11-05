@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="tela-desktop">
+      <div class="header">
+        <div class="container-logo">
+          <img src="../inicial/assets/logo.png" alt="logo-image" width="90" />
+        </div>
+        <div class="container-nav">
+          <ul class="nav">
+            <li style="color: #ee6c4d; text-decoration-line: underline">
+              HOME
+            </li>
+            <li>BIBLIOTECA</li>
+            <li>AJUDA</li>
+          </ul>
+        </div>
+        <div class="container-search">
+          <div class="content-search">
+            <img
+              src="../ajuda/assets/54481-removebg-preview.png"
+              alt="search-icon"
+              width="15"
+              style="margin-left: 5px"
+            />
+            <input type="text" placeholder="Pesquise seu jogo" class="search" />
+          </div>
+        </div>
+        <div class="container-user">
+          <img
+            src="../ajuda/assets/Ellipse 1.png"
+            alt="user-image"
+            width="50"
+          />
+        </div>
+      </div>
+      <div class="section-title">
+        <h1>HOME</h1>
+      </div>
+      <div class="main-content">
+        <div class="container-primary">
+          <div class="container-paragrafo">
+            <p>
+              Organize, avalie e compartilhe sua biblioteca de jogos pessoais
+              agora mesmo e sem dificuldades
+            </p>
+          </div>
+          <img src="assets/image 27.png" alt="game-image" width="400" />
+        </div>
+        <div class="container-secundary">
+          <div class="header-secundary">
+            <div class="secundary-paragrafo">
+              <p>Jogos do momento</p>
+              <img src="assets/image 26.png" alt="fire-icon" />
+            </div>
+            <div class="container-btn">
+              <button class="btn">VER TODOS</button>
+            </div>
+          </div>
+          <div class="container-games">
+            <div class="card-games">
+              <img src="assets/Rectangle 25.png" alt="the-witcher-image" />
+              <label for="">The Witcher</label>
+            </div>
+            <div class="card-games">
+                <img src="assets/Rectangle 13.png" alt="gta-image" />
+                <label for="">GTA V</label>
+              </div class="card-games">
+              <div class="card-games">
+                <img src="assets/Rectangle 12.png" alt="god-of-war-image" />
+                <label for="">God Of War</label>
+              </div>
+              <div class="card-games">
+                <img src="assets/Rectangle 11.png" alt="bloodborne-image" />
+                <label for="">Bloodborne</label>
+              </div>
+          </div>
+        </div>
+      </div>
+       <!-- <div class="footer">
+            <p>Copyright © 2023 All rights Reserved - GamesLibrary</p>
+       </div> -->
+    </div>
+    <div class="tela-mobile">
+      <div class="header">
+        <div class="container-user">
+          <img src="../ajuda/assets/Ellipse 1.png" alt="user-image" width="70" />
+        </div>
+        <div class="container-search">
+          <div class="content-search">
+            <img
+              src="../ajuda/assets/54481-removebg-preview.png"
+              alt="search-icon"
+              width="20"
+              style="margin-left: 5px"
+            />
+            <input type="text" placeholder="Pesquise seu jogo" class="search" />
+          </div>
+        </div>
+      </div>
+      <div class="section-title">
+        <h1>HOME</h1>
+      </div>
+      <div class="main-content">
+        <div class="container-primary">
+          <div class="container-paragrafo">
+            <p>
+              Organize, avalie e compartilhe sua biblioteca de jogos pessoais
+              agora mesmo e sem dificuldades
+            </p>
+          </div>
+          <img src="assets/image 27.png" alt="game-image" width="250" />
+        </div>
+        <div class="container-secundary">
+          <div class="header-secundary">
+            <div class="secundary-paragrafo">
+              <p>Jogos do momento</p>
+              <img src="assets/image 26.png" alt="fire-icon" />
+            </div>
+        </div>
+        <div class="container-games">
+          <div class="card-games">
+            <img src="assets/Rectangle 25.png" alt="the-witcher-image" width="100" />
+            <label for="">The Witcher</label>
+          </div>
+          <div class="card-games">
+              <img src="assets/Rectangle 13.png" alt="gta-image"width="100" />
+              <label for="">GTA V</label>
+            </div class="card-games">
+            <div class="card-games">
+              <img src="assets/Rectangle 12.png" alt="god-of-war-image"width="100" />
+              <label for="">God Of War</label>
+            </div>
+        </div>
+      </div>
+      </div>
+      <div class="container-nav">
+        <ul class="nav">
+          <li>
+            <img src="../ajuda/assets/home.png" alt="home-icon" />
+          </li>
+          <li><img src="../ajuda/assets/lib.png" alt="lib-icon" /></li>
+          <li>
+            <img src="../ajuda/assets/help.png" alt="help-icon" />
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+    <script>
+      function checkWidth() {
+        if (window.matchMedia("(max-width: 780px)").matches) {
+          //se for uma tela mobile
+          document.querySelector(".tela-desktop").style.display = "none";
+          document.querySelector(".tela-mobile").style.display = "";
+        } else {
+          // Se for uma tela de desktop
+          document.querySelector(".tela-desktop").style.display = "";
+          document.querySelector(".tela-mobile").style.display = "none";
+        }
+      }
+      checkWidth();
+      window.addEventListener("resize", checkWidth);
+    </script>
+  </body>
+</html>
