@@ -1,5 +1,6 @@
 export const validation = (validationFunction) => {
   return async (req, res, next) => {
+    // callback function to check our business rules, working as middleware
     try {
       validationFunction(req.body);
       next();

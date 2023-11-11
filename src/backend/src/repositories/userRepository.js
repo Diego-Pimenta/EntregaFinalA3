@@ -44,7 +44,6 @@ export class UserRepository {
   }
 
   update(id, { password }) {
-    // password será um obj dto
     return this.db.query(updateQuery, [password, id]);
   }
 }

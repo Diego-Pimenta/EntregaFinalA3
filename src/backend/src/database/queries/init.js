@@ -1,6 +1,6 @@
 export const init = [
   `
-  CREATE DATABASE gameslibrary;
+  CREATE DATABASE IF NOT EXISTS gameslibrary;
   `,
   `
   USE gameslibrary;
