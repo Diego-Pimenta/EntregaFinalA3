@@ -19,7 +19,7 @@ export const init = [
   (id INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER NOT NULL,
   title VARCHAR(50) NOT NULL,
-  description VARCHAR(200) NOT NULL,
+  description TEXT NOT NULL,
   genre VARCHAR(30) NOT NULL,
   price DOUBLE NOT NULL,
   developed_by VARCHAR(30) NOT NULL,
