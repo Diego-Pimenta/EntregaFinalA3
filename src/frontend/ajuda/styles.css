@@ -8,6 +8,11 @@ body {
   background-color: #151617;
 }
 
+a {
+  all: unset;
+  cursor: pointer;
+}
+
 @media (min-width: 781px) and (max-width: 2000px) {
   .tela-desktop {
     display: flex;
