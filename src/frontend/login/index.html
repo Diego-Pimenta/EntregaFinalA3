@@ -21,42 +21,89 @@
     <title>Login</title>
   </head>
   <body>
-    <div>
-      <img
-        src="../inicial/assets/logo.png"
-        alt="logo"
-        width="100"
-        style="margin: 30px"
-      />
-    </div>
-    <div class="container-main">
-      <div class="container-login">
-        <h1 style="color: #fff; font-family: Poppins, san">LOGIN:</h1>
-        <input
-          type="text"
-          placeholder="E-MAIL"
-          style="border-radius: 6px 6px 0px 0px"
-        />
-        <input
-          type="text"
-          placeholder="SENHA"
-          style="border-radius: 0px 0px 6px 6px"
+    <div class="tela-desktop">
+      <div class="bg-image">
+        <img
+          src="../inicial/assets/bg-image.png"
+          alt="bg-image"
+          style="opacity: 20%"
         />
       </div>
-      <div class="container-return">
-        <a href="">Esqueci minha senha</a>
-        <h3>Não tem um login? <a href="">CADASTRE-SE</a></h3>
+      <div class="container-main">
+        <div class="container-header">
+          <img src="../inicial/assets/logo.png" alt="logo-image" width="100" />
+        </div>
+        <div class="container-form">
+          <h1>LOGIN:</h1>
+          <form id="form">
+            <input type="email" id="email" placeholder="E-MAIL" style="border-radius: 6px 6px 0px 0px;">
+            <input type="password" id="senha" placeholder="SENHA" style="border-radius: 0px 0px 6px 6px;">
+            <p>Não tem um login?<a href=""><span style="color: #ee6c4d; text-decoration: underline;">CADASTRE-SE</span></a></p>
+            <div class="container-btn">
+                 <button id="btnLogin" class="btn" type="submit">FAZER LOGIN</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="container-btn">
-        <a href="../login/index.html">
-          <button class="btn">FAZER LOGIN</button></a
-         >
       </div>
     </div>
-    <div class="container-footer">
-        <p style="color: #fff; font-family: 'Inter', sans-serif">
-          Copyright © 2023 All rights Reserved - GamesLibrary
-        </p>
-      </div>
+    <script>
+      const form = document.querySelector("#form")
+      const emailInput = document.querySelector("#email")
+      const passwordInput = document.querySelector("#senha")
+      var btnLogin = document.getElementById("btnLogin");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        //verificar se o email está vazio
+        if(emailInput.value === ""){
+          alert("Por favor, preencha o seu e-mail !");
+          return
+        }
+        //verificar se o email é válido
+        if(!emailIsValid(emailInput.value)){
+          alert("E-mail inválido !");
+          return
+        }
+        //verificar se o senha está vazia
+        if(passwordInput.value === ""){
+          alert("Por favor, preencha a sua senha !");
+          return
+        }
+
+        if(!validatePassword(passwordInput.value, 6)){
+          alert("A senha precisa ter no mínimo 6 digítos.");
+          return
+        }
+
+       
+         //Se todos os campos estiverem corretament preenchidos, envie o form
+      form.submit()
+      window.location.href = "../home/index.html"; // Substitua pelo URL real
+    })
+
+      //Função para validar email
+      function emailIsValid(email){
+        //criar uma regex para validar o email
+        const emailRegex = new RegExp(
+          /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}$/
+        );
+
+        if(emailRegex.test(email)){
+          return true;
+        }
+
+        return false;
+      }
+      //Função para validar senha
+      function validatePassword(password,minDigits){
+        if(password.length >= minDigits){
+          return true
+        }
+        return false
+      }
+     
+    </script>
   </body>
 </html>
