@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -9,47 +8,69 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&family=Poppins:wght@900&display=swap"
-        rel="stylesheet" />
+      href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&family=Poppins:wght@900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
     <title>Cadastro</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="tela-desktop">
-        <div class="bg-image">
-            <img src="../inicial/assets/bg-image.png" alt="bg-image" style="opacity: 20%" />
+      <div class="bg-image">
+        <img
+          src="../inicial/assets/bg-image.png"
+          alt="bg-image"
+          style="opacity: 20%"
+        />
+      </div>
+      <div class="container-main">
+        <div class="container-header">
+          <img src="../inicial/assets/logo.png" alt="logo-image" width="100" />
         </div>
-        <div class="container-main">
-            <div class="container-header">
-                <img src="../inicial/assets/logo.png" alt="logo-image" width="100" />
+        <div class="container-form">
+          <h1>CADASTRE-SE:</h1>
+          <form id="form">
+            <input
+              type="text"
+              id="nome"
+              placeholder="NOME"
+              style="border-radius: 6px 6px 0px 0px"
+            />
+            <input type="text" id="sobrenome" placeholder="SOBRENOME" />
+            <input type="email" id="email" placeholder="E-MAIL" />
+            <input type="password" id="senha" placeholder="SENHA" />
+            <input
+              type="password"
+              id="senha-confirmacao"
+              placeholder="CONFIRME SUA SENHA"
+            />
+            <input type="genero" id="genero" placeholder="GÊNERO" />
+            <input
+              type="birth-date"
+              id="birth-date"
+              placeholder="DATA DE NASCIMENTO"
+              style="border-radius: 0px 0px 6px 6px"
+            />
+            <div class="container-btn">
+              <button id="btnLogin" class="btn" type="submit">
+                CRIAR CONTA
+              </button>
             </div>
-            <div class="container-form">
-                <h1>CADASTRE-SE:</h1>
-                <form id="form">
-                    <input type="text" id="nome" placeholder="NOME" style="border-radius: 6px 6px 0px 0px;">
-                    <input type="text" id="sobrenome" placeholder="SOBRENOME" style="border-radius: 0px 0px 6px 6px;">
-                    <input type="email" id="email" placeholder="E-MAIL" style="border-radius: 0px 0px 6px 6px;">
-                    <input type="password" id="senha" placeholder="SENHA" style="border-radius: 0px 0px 6px 6px;">
-                    <input type="password" id="senha-confirmacao" placeholder="CONFIRME SUA SENHA" style="border-radius: 0px 0px 6px 6px;">
-                    <input type="genero" id="genero" placeholder="GÊNERO" style="border-radius: 0px 0px 6px 6px;">
-                    <input type="birth-date" id="birth-date" placeholder="DATA DE NASCIMENTO" style="border-radius: 0px 0px 6px 6px;">
-                    <div class="container-btn">
-                        <button id="btnLogin" class="btn" type="submit">FAZER LOGIN</button>
-                    </div>
-                </form>
-            </div>
-            <div class="container-footer">
-                <p style="color: #fff">
-                  Copyright © 2023 All rights Reserved - GamesLibrary
-                </p>
-            </div>
+          </form>
         </div>
+        <div class="container-footer">
+          <p style="color: #fff">
+            Copyright © 2023 All rights Reserved - GamesLibrary
+          </p>
+        </div>
+      </div>
     </div>
-    </div>
-</body>
-
+  </body>
 </html>

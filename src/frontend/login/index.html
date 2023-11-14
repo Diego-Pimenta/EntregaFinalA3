@@ -36,11 +36,29 @@
         <div class="container-form">
           <h1>LOGIN:</h1>
           <form id="form">
-            <input type="email" id="email" placeholder="E-MAIL" style="border-radius: 6px 6px 0px 0px;">
-            <input type="password" id="senha" placeholder="SENHA" style="border-radius: 0px 0px 6px 6px;">
-            <p>Não tem um login?<a href=""><span style="color: #ee6c4d; text-decoration: underline;">CADASTRE-SE</span></a></p>
+            <input
+              type="email"
+              id="email"
+              placeholder="E-MAIL"
+              style="border-radius: 6px 6px 0px 0px"
+            />
+            <input
+              type="password"
+              id="senha"
+              placeholder="SENHA"
+              style="border-radius: 0px 0px 6px 6px"
+            />
+            <p>
+              Não tem um login?&nbsp;<a href="../cadastro/index.html"
+                ><span style="color: #ee6c4d; text-decoration: underline"
+                  >CADASTRE-SE</span
+                ></a
+              >
+            </p>
             <div class="container-btn">
-                 <button id="btnLogin" class="btn" type="submit">FAZER LOGIN</button>
+              <button id="btnLogin" class="btn" type="submit">
+                FAZER LOGIN
+              </button>
             </div>
           </form>
         </div>
@@ -50,65 +68,62 @@
           </p>
         </div>
       </div>
-      </div>
     </div>
     <script>
-      const form = document.querySelector("#form")
-      const emailInput = document.querySelector("#email")
-      const passwordInput = document.querySelector("#senha")
+      const form = document.querySelector("#form");
+      const emailInput = document.querySelector("#email");
+      const passwordInput = document.querySelector("#senha");
       var btnLogin = document.getElementById("btnLogin");
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
 
         //verificar se o email está vazio
-        if(emailInput.value === ""){
+        if (emailInput.value === "") {
           alert("Por favor, preencha o seu e-mail !");
-          return
+          return;
         }
         //verificar se o email é válido
-        if(!emailIsValid(emailInput.value)){
+        if (!emailIsValid(emailInput.value)) {
           alert("E-mail inválido !");
-          return
+          return;
         }
         //verificar se o senha está vazia
-        if(passwordInput.value === ""){
+        if (passwordInput.value === "") {
           alert("Por favor, preencha a sua senha !");
-          return
+          return;
         }
 
-        if(!validatePassword(passwordInput.value, 6)){
+        if (!validatePassword(passwordInput.value, 6)) {
           alert("A senha precisa ter no mínimo 6 digítos.");
-          return
+          return;
         }
 
-       
-         //Se todos os campos estiverem corretament preenchidos, envie o form
-      form.submit()
-      window.location.href = "../home/index.html"; // Substitua pelo URL real
-    })
+        //Se todos os campos estiverem corretament preenchidos, envie o form
+        form.submit();
+        window.location.href = "../home/index.html"; // Substitua pelo URL real
+      });
 
       //Função para validar email
-      function emailIsValid(email){
+      function emailIsValid(email) {
         //criar uma regex para validar o email
         const emailRegex = new RegExp(
           /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}$/
         );
 
-        if(emailRegex.test(email)){
+        if (emailRegex.test(email)) {
           return true;
         }
 
         return false;
       }
       //Função para validar senha
-      function validatePassword(password,minDigits){
-        if(password.length >= minDigits){
-          return true
+      function validatePassword(password, minDigits) {
+        if (password.length >= minDigits) {
+          return true;
         }
-        return false
+        return false;
       }
-     
     </script>
   </body>
 </html>
