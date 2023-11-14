@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #151617;
+  }
+  
+  a {
+    all: unset;
+    cursor: pointer;
+  }
+  
+  
+  
+  .tela-desktop {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .container-main {
+    width: 35%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    @media (max-width:700px){
+      width: 40%;
+    }
+  }
+  
+  .container-header {
+    margin-top: 80px;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
+    height: 300px;
+    font-family: Poppins, sans-serif;
+    color: #FFFF;
+    gap: 20px;
+  }
+  
+  .container-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container-form input {
+    background-color: #151617;
+    height: 40px;
+    border: 2px solid #ee6c4d;
+    color: #FFFF;
+    font-family: Poppins, sans-serif;
+    font-size: 20px;
+  }
+  
+  .container-form input:focus {
+    outline: none;
+  }
+  
+  .container-form p {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  
+    @media (max-width: 904px) {
+      font-size: 18px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  .container-btn {
+    margin-top: 60px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  .btn {
+    font-weight: 700;
+    font-size: 16px;
+    height: 50px;
+    width: 200px;
+    background-color: transparent;
+    color: #ee6c4d;
+    border-radius: 50px;
+    border: 2px solid #ee6c4d;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #ee6c4d;
+    color: #141b26;
+  }
+  
+  .bg-image {
+    margin-top: 28px;
+    max-width: 100%;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    align-self: end;
+    pointer-events: none;
+  }
+  
+  .container-footer {
+    margin-top: 200px;
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+    align-items: end;
+    display: flex;
+}

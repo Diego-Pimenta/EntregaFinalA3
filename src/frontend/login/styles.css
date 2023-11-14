@@ -121,3 +121,12 @@ a {
   align-self: end;
   pointer-events: none;
 }
+
+.container-footer {
+  margin-top: 180px;
+  width: 100%;
+  height: 100px;
+  justify-content: center;
+  align-items: end;
+  display: flex;
+}
