@@ -17,14 +17,12 @@ export const init = [
   `
   CREATE TABLE IF NOT EXISTS games
   (id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  user_id INTEGER NOT NULL,
   title VARCHAR(50) NOT NULL,
   description TEXT NOT NULL,
   genre VARCHAR(30) NOT NULL,
   price DOUBLE NOT NULL,
   developed_by VARCHAR(30) NOT NULL,
-  release_date DATE NOT NULL,
-  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE);
+  release_date DATE NOT NULL);
   `,
   `
   CREATE TABLE IF NOT EXISTS platforms

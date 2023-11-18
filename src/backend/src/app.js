@@ -32,3 +32,5 @@ class App {
     });
   }
 }
+
+let x = new App();
