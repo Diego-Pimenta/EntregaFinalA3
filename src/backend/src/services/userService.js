@@ -5,22 +5,16 @@ export class UserService {
     this.repository = repository;
   }
 
-  async create({ username, email, password, birth_date, gender }) {
-    let existingUser = await this.findByUsername(username);
+  async create(userDto) {
+    let existingUser = await this.findByUsername(userDto.username);
     if (existingUser) {
       throw new HttpError(400, "Bad Request! User already exists!");
     }
-    existingUser = await this.findByEmail(email);
+    existingUser = await this.findByEmail(userDto.email);
     if (existingUser) {
       throw new HttpError(400, "Bad Request! User already exists!");
     }
-    return this.repository.create({
-      username,
-      email,
-      password,
-      birth_date,
-      gender,
-    });
+    return this.repository.create(userDto);
   }
 
   findAll() {
