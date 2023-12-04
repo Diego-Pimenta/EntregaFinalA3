@@ -49,6 +49,13 @@
     background-color: #ee6c4d;
     color: #141b26;
   }
+
+  .main_content{
+    margin-top: 20px;
+    width: 80vw;
+    background-color: red;
+    height: 500px;
+  }
 }
 
 @media (min-width: 320px) and (max-width: 780px) {

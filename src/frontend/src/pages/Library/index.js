@@ -3,11 +3,26 @@ import { useState, useEffect } from "react";
 import { Header } from "../../components/header";
 import { FooterNav } from "../../components/footerNav";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import s from "./library.module.css";
 
 export const Library = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [backendData, setBackendData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/games");
+        setBackendData(response.data);
+      } catch (error) {
+        console.error("Erro ao fazer chamada para o backend:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     // Função para verificar a largura da tela e atualizar o estado
@@ -54,6 +69,9 @@ export const Library = () => {
                 <button className={s.btn}>ADICIONAR NOVO JOGO</button>
               </Link>
             </div>
+          </div>
+          <div className={s.main_content}>
+            
           </div>
         </div>
       )}

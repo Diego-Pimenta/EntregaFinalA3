@@ -28,14 +28,18 @@ export const Login = () => {
 
   const [backendData, setBackendData] = useState(null);
 
-  const fazerChamadaBackend = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/api/exemplo');
-      setBackendData(response.data);
-    } catch (error) {
-      console.error('Erro ao fazer chamada para o backend:', error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/users");
+        setBackendData(response.data);
+      } catch (error) {
+        console.error("Erro ao fazer chamada para o backend:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const {
     register,
