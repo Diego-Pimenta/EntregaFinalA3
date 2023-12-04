@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import bgImage from "../../assets/bg-image.png";
 import logo from "../../assets/logo-image.png";
@@ -8,6 +8,7 @@ import s from "./login.module.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -25,6 +26,17 @@ const schema = yup.object().shape({
 export const Login = () => {
   const navigate = useNavigate();
 
+  const [backendData, setBackendData] = useState(null);
+
+  const fazerChamadaBackend = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/exemplo');
+      setBackendData(response.data);
+    } catch (error) {
+      console.error('Erro ao fazer chamada para o backend:', error);
+    }
+  };
+
   const {
     register,
     handleSubmit,
@@ -35,7 +47,7 @@ export const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    navigate("/")
+    navigate("/");
   };
 
   return (
@@ -72,7 +84,7 @@ export const Login = () => {
             )}
             <p>
               Não tem um login?&nbsp;
-              <span style={{textDecoration: "underline"}}>
+              <span style={{ textDecoration: "underline" }}>
                 <Link to={"/register"}>CADASTRE-SE</Link>
               </span>
             </p>
