@@ -5,6 +5,7 @@ import { userModule } from "./modules/userModule.js";
 import { gameModule } from "./modules/gameModule.js";
 import { gradeModule } from "./modules/gradeModule.js";
 import { statusModule } from "./modules/statusModule.js";
+import { platformModule } from "./modules/platformModule.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 class App {
@@ -30,6 +31,7 @@ class App {
       .use("/games", gameModule(this.db))
       .use("/grades", gradeModule(this.db))
       .use("/statuses", statusModule(this.db))
+      .use("/platforms", platformModule(this.db))
       .use(errorHandler);
     this.app.use(router);
   }

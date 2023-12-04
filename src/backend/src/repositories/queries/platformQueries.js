@@ -15,7 +15,7 @@ export const findByNameQuery = `
 `;
 
 export const findPlatformGamesQuery = `
-SELECT games.* FROM (platforms INNER JOIN games_platforms ON platforms.id = games_platforms.platform_id) INNER JOIN games ON games.id = games_platforms.game_id WHERE platforms.id = ?;
+   SELECT games.* FROM (platforms INNER JOIN games_platforms ON platforms.id = games_platforms.platform_id) INNER JOIN games ON games.id = games_platforms.game_id WHERE platforms.id = ?;
 `;
 
 export const findAllQuery = `

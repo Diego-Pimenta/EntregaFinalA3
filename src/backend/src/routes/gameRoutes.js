@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { uploadFile } from "../middlewares/uploadFile.js";
 
 export const gameRoutes = (gameController) => {
   const gameRouter = Router();

@@ -5,16 +5,22 @@ export class UserService {
     this.repository = repository;
   }
 
-  async create(userDto) {
-    let existingUser = await this.findByUsername(userDto.username);
-    if (existingUser) {
-      throw new HttpError(400, "Bad Request! User already exists!");
+  async create({ username, email, password, birth_date, gender }) {
+    let existingUser = await this.repository.findByUsername(username);
+    if (existingUser != null) {
+      throw new HttpError(400, "Bad Request! Username already in use!");
     }
-    existingUser = await this.findByEmail(userDto.email);
-    if (existingUser) {
-      throw new HttpError(400, "Bad Request! User already exists!");
+    existingUser = await this.repository.findByEmail(email);
+    if (existingUser != null) {
+      throw new HttpError(400, "Bad Request! Email already in use!");
     }
-    return this.repository.create(userDto);
+    return this.repository.create({
+      username,
+      email,
+      password,
+      birth_date,
+      gender,
+    });
   }
 
   findAll() {
@@ -23,7 +29,7 @@ export class UserService {
 
   async findById(id) {
     const user = await this.repository.findById(id);
-    if (!user) {
+    if (user == null) {
       throw new HttpError(404, "User not found!");
     }
     return user;
@@ -31,7 +37,7 @@ export class UserService {
 
   async findByUsername(username) {
     const user = await this.repository.findByUsername(username);
-    if (!user) {
+    if (user == null) {
       throw new HttpError(404, "User not found!");
     }
     return user;
@@ -39,7 +45,7 @@ export class UserService {
 
   async findByEmail(email) {
     const user = await this.repository.findByEmail(email);
-    if (!user) {
+    if (user == null) {
       throw new HttpError(404, "User not found!");
     }
     return user;
