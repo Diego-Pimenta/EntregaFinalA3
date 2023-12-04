@@ -13,26 +13,6 @@ export class PlatformController {
     }
   }
 
-  async addGame(req, res, next) {
-    try {
-      const { id, gameId } = req.params;
-      const result = this.service.addGame(id, gameId);
-      res.status(201).json(result);
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async removeGame(req, res, next) {
-    try {
-      const { id, gameId } = req.params;
-      const result = this.service.removeGame(id, gameId);
-      res.status(200).json(result);
-    } catch (error) {
-      next(error);
-    }
-  }
-
   async findById(req, res, next) {
     try {
       const id = req.params.id;

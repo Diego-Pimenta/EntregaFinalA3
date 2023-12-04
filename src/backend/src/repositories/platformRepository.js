@@ -7,10 +7,6 @@ import {
   findAllQuery,
   updateQuery,
 } from "./queries/platformQueries.js";
-import {
-  createGamePlatformQuery,
-  deleteGamePlatformQuery,
-} from "./queries/gamePlatformQueries.js";
 
 export class PlatformRepository {
   constructor(db) {
@@ -35,14 +31,6 @@ export class PlatformRepository {
 
   findAll() {
     return this.db.query(findAllQuery);
-  }
-
-  addGame(id, gameId) {
-    return this.db.query(createGamePlatformQuery, [gameId, id]);
-  }
-
-  removeGame(id, gameId) {
-    return this.db.query(deleteGamePlatformQuery, [gameId, id]);
   }
 
   update(id, { name }) {

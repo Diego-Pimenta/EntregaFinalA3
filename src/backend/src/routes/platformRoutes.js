@@ -16,9 +16,5 @@ export const platformRoutes = (platformController) => {
     .get((req, res, next) =>
       platformController.findPlatformGames(req, res, next)
     );
-  platformRouter
-    .route("/:id/games/:gameId")
-    .post((req, res, next) => platformController.addGame(req, res, next))
-    .delete((req, res, next) => platformController.removeGame(req, res, next));
   return platformRouter;
 };

@@ -22,7 +22,8 @@ export const init = [
   genre VARCHAR(30) NOT NULL,
   price DOUBLE NOT NULL,
   developed_by VARCHAR(30) NOT NULL,
-  release_date DATE NOT NULL);
+  release_date DATE NOT NULL,
+  image LONGBLOB);
   `,
   `
   CREATE TABLE IF NOT EXISTS platforms

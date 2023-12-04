@@ -34,7 +34,7 @@ export class GameRepository {
       developed_by,
       release_date,
     ]);
-    await this.associate({ game_id: createdGame.id, platform_id });
+    await this.associate({ game_id: createdGame.insertId, platform_id });
     return createdGame;
   }
 
