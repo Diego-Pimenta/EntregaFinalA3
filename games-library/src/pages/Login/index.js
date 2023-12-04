@@ -3,12 +3,11 @@ import React from "react";
 import bgImage from "../../assets/bg-image.png";
 import logo from "../../assets/logo-image.png";
 
-import "./login.css";
+import s from "./login.module.css";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-//import { useHistory } from "react-router-dom";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -24,7 +23,6 @@ const schema = yup.object().shape({
 });
 
 export const Login = () => {
-  
   const navigate = useNavigate();
 
   const {
@@ -37,54 +35,55 @@ export const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    navigate("/")
   };
 
   return (
-    <div className="tela-desktop">
-      <div className="bg-image">
+    <div className={s.tela_desktop}>
+      <div className={s.bg_image}>
         <img src={bgImage} alt="bg-image" />
       </div>
-      <div className="container-main">
-        <div className="container-header">
+      <div className={s.container_main}>
+        <div className={s.container_header}>
           <img src={logo} alt="logo-image" width="100" />
         </div>
-        <div className="container-form">
+        <div className={s.container_form}>
           <h1>LOGIN:</h1>
           <form id="form" onSubmit={handleSubmit(onSubmit)}>
             <input
               type="email"
               id="email"
-              style={{borderRadius: "6px 6px 0px 0px"}}
+              style={{ borderRadius: "6px 6px 0px 0px" }}
               placeholder="E-MAIL"
               {...register("email")}
             />
             {errors?.email && (
-              <span className="error">{errors?.email?.message}</span>
+              <span className={s.error}>{errors?.email?.message}</span>
             )}
             <input
               type="password"
               id="senha"
-              style={{borderRadius: "0px 0px 6px 6px"}}
+              style={{ borderRadius: "0px 0px 6px 6px" }}
               placeholder="SENHA"
               {...register("password")}
             />
             {errors?.password && (
-              <span className="error">{errors?.password?.message}</span>
+              <span className={s.error}>{errors?.password?.message}</span>
             )}
             <p>
               Não tem um login?&nbsp;
-              <span>
-                <Link to={"/"}>CADASTRE-SE</Link>
+              <span style={{textDecoration: "underline"}}>
+                <Link to={"/register"}>CADASTRE-SE</Link>
               </span>
             </p>
-            <div className="container-btn">
-              <button id="btnLogin" className="btn" type="submit">
+            <div className={s.container_btn}>
+              <button id="btnLogin" className={s.btn} type="submit">
                 FAZER LOGIN
               </button>
             </div>
           </form>
         </div>
-        <div className="container-footer">
+        <div className={s.container_footer}>
           <p>Copyright © 2023 All rights Reserved - GamesLibrary</p>
         </div>
       </div>

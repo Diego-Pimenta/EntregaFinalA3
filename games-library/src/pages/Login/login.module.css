@@ -13,7 +13,7 @@ a {
     cursor: pointer;
 }
 
-.desktop {
+.tela_desktop {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@ a {
     height: 100vh;
 }
 
-.container-main {
+.container_main {
     width: 35%;
     height: 600px;
     display: flex;
@@ -35,7 +35,7 @@ a {
     }
 }
 
-.container-header {
+.container_header {
     margin-top: 80px;
     width: 100%;
     height: 100px;
@@ -44,7 +44,7 @@ a {
     align-items: center;
 }
 
-.container-form {
+.container_form {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -55,12 +55,12 @@ a {
     justify-content: center;
 }
 
-.container-form form {
+.container_form form {
     display: flex;
     flex-direction: column;
 }
 
-.container-form input {
+.container_form input {
     background-color: #151617;
     height: 50px;
     border: 2px solid #ee6c4d;
@@ -70,11 +70,11 @@ a {
     padding-left: 10px;
 }
 
-.container-form input:focus {
+.container_form input:focus {
     outline: none;
 }
 
-.container-form p {
+.container_form p {
     margin-top: 20px;
     display: flex;
     justify-content: center;
@@ -87,12 +87,12 @@ a {
     }
 }
 
-.container-form span {
+.container_form span {
     color: #ee6c4d;
     font-weight: bold;
 }
 
-.container-btn {
+.container_btn {
     margin-top: 60px;
     height: 50px;
     justify-content: center;
@@ -123,7 +123,7 @@ a {
     color: #141b26;
 }
 
-.bg-image {
+.bg_image {
     max-width: 100%;
     height: 100vh;
     position: absolute;
@@ -132,7 +132,7 @@ a {
     pointer-events: none;
 }
 
-.container-footer {
+.container_footer {
     width: 100%;
     height: 100px;
     justify-content: center;
@@ -141,7 +141,7 @@ a {
     color: #ffff;
 }
 
-.container-form .error {
-    color: #ee6c4d;
+.container_form .error {
+    color: red;
     margin: 10px;
 }

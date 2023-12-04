@@ -1,5 +1,5 @@
 import React from "react";
-import "./welcome.css";
+import s from "./welcome.module.css";
 import bgImage from "../../assets/bg-image.png";
 import logo from "../../assets/logo-image.png";
 import steam from "../../assets/steam.png";
@@ -12,26 +12,26 @@ import { Link } from "react-router-dom";
 
 export const Welcome = () => {
   return (
-    <div className="tela-desktop">
-      <div className="bg-image">
+    <div className={s.tela_desktop}>
+      <div className={s.bg_image}>
         <img src={bgImage} alt="bg-image" />
       </div>
 
-      <div className="container-header">
+      <div className={s.container_header}>
         <img src={logo} alt="logo-image" width="100" />
       </div>
 
-      <div className="container-main">
-        <div className="container-title">
+      <div className={s.container_main}>
+        <div className={s.container_title}>
           <h1>
             CRIE A SUA PRÓPRIA
             <br />
-            <span className="span-title">BIBLIOTECA DE JOGOS</span>
+            <span className={s.span_title}>BIBLIOTECA DE JOGOS</span>
           </h1>
         </div>
 
-        <div className="container-plataforms">
-          <ul className="plataforms-list">
+        <div className={s.container_plataforms}>
+          <ul className={s.plataforms_list}>
             <li>
               <img src={steam} alt="steam-logo" />
             </li>
@@ -49,16 +49,16 @@ export const Welcome = () => {
             </li>
           </ul>
         </div>
-        <div className="container-btn">
+        <div className={s.container_btn}>
           <Link to="/login">
-            <button className="btn">FAZER LOGIN</button>
+            <button className={s.btn}>FAZER LOGIN</button>
           </Link>
-          <Link to="/">
-            <button className="btn">CADASTRE-SE</button>
+          <Link to="/register">
+            <button className={s.btn}>CADASTRE-SE</button>
           </Link>
         </div>
       </div>
-      <div className="container-footer">
+      <div className={s.container_footer}>
         <p>Copyright © 2023 All rights Reserved - GamesLibrary</p>
       </div>
     </div>

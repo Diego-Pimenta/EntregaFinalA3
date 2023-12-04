@@ -4,6 +4,12 @@ import { createBrowserRouter } from "react-router-dom";
 import { Welcome } from "../pages/Welcome";
 import { Login } from "../pages/Login";
 import { Error } from "../pages/Error";
+import { Register } from "../pages/Register";
+import { Home } from "../pages/Home";
+import { Library } from "../pages/Library";
+import { Help } from "../pages/Help";
+import { NewGame } from "../pages/NewGame";
+
 
 export const router = createBrowserRouter([
   {
@@ -16,17 +22,23 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "cadastro",
-    // element: <Cadastro />,
+    path: "register",
+    element: <Register />,
   },
   {
     path: "home",
-    // element: <Home />,
-    children: [
-      {
-        path: "home",
-        // element: <Home />,
-      },
-    ],
+    element: <Home />,
+  },
+  {
+    path: "library",
+    element: <Library />,
+  },
+  {
+    path: "help",
+    element: <Help />,
+  },
+  {
+    path: "newGame",
+    element: <NewGame />,
   },
 ]);

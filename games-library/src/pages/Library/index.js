@@ -1,12 +1,12 @@
 import React from "react";
-
-import s from "./error.module.css";
-
 import { useState, useEffect } from "react";
 import { Header } from "../../components/header";
 import { FooterNav } from "../../components/footerNav";
+import { Link } from "react-router-dom";
 
-export const Error = () => {
+import s from "./library.module.css";
+
+export const Library = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -28,37 +28,34 @@ export const Error = () => {
       window.removeEventListener("resize", verificaLarguraTela);
     };
   }, []);
-
   return (
     <>
       {isMobile ? (
-        <>
-          <div className={s.tela_mobile}>
-            <Header />
-            <div className={s.main_content}>
-              <div className={s.title}>
-                <h1>404</h1>
-                <p>OPS! NÃO ENCONTRAMOS ESSA PÁGINA</p>
-              </div>
+        <div className={s.tela_mobile}>
+          <Header />
+          <div className={s.section_title}>
+            <h1>BIBLIOTECA</h1>
+            <div className={s.container_btn}>
+              <Link to={"/newGame"}>
+                <button className={s.btn}>ADICIONAR NOVO JOGO</button>
+              </Link>
             </div>
-            <FooterNav />
           </div>
-        </>
+          <div className={s.scroll}></div>
+          <FooterNav />
+        </div>
       ) : (
-        <>
-          <div className={s.tela_desktop}>
-            <Header />
-            <div className={s.main_content}>
-              <div className={s.title}>
-                <h1>404</h1>
-                <p>OPS! NÃO ENCONTRAMOS ESSA PÁGINA</p>
-              </div>
-            </div>
-            <div className={s.footer}>
-              <p>Copyright © 2023 All rights Reserved - GamesLibrary</p>
+        <div className={s.tela_desktop}>
+          <Header />
+          <div className={s.section_title}>
+            <h1>BIBLIOTECA</h1>
+            <div className={s.container_btn}>
+              <Link to={"/newGame"}>
+                <button className={s.btn}>ADICIONAR NOVO JOGO</button>
+              </Link>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );
