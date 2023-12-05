@@ -14,5 +14,8 @@ export const gradeRoutes = (gradeController) => {
   gradeRouter
     .route("/user/:userId")
     .get((req, res, next) => gradeController.findByUserId(req, res, next));
+  gradeRouter
+    .route("/game/:gameId")
+    .get((req, res, next) => gradeController.findByGameId(req, res, next));
   return gradeRouter;
 };

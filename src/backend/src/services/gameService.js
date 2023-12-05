@@ -17,11 +17,11 @@ export class GameService {
   }) {
     let existingGame = await this.repository.findByTitle(title);
     if (Object.keys(existingGame).length !== 0) {
-      throw new HttpError(400, "Bad Request! Game already exists!");
+      throw new HttpError("Bad Request! Game already exists!");
     }
     let existingPlatform = await this.platformRepository.findById(platform_id);
     if (Object.keys(existingPlatform).length === 0) {
-      throw new HttpError(404, "Platform not found!");
+      throw new HttpError("Platform not found!");
     }
     return this.repository.create({
       title,
@@ -53,7 +53,7 @@ export class GameService {
   async findByPlatform(platformId) {
     const game = await this.repository.findByPlatform(platformId);
     if (Object.keys(game).length === 0) {
-      throw new HttpError(404, "Game not found!");
+      throw new HttpError("Game not found!");
     }
     return game;
   }
@@ -62,17 +62,35 @@ export class GameService {
     return this.repository.findAll();
   }
 
-  async update(id, gameDto) {
-    console.log(gameDto.title);
-    const game = await this.repository.findByTitle(gameDto.title);
-    console.log({ game });
-    if (game.title === gameDto.title) {
-      throw new HttpError(
-        404,
-        "Bad Request! Game with this title already exists!"
-      );
+  async update(
+    id,
+    {
+      title,
+      description,
+      genre,
+      price,
+      developed_by,
+      release_date,
+      platform_id,
     }
-    return this.repository.update(id, gameDto);
+  ) {
+    const game = await this.repository.findByTitle(title);
+    if (Object.keys(game).length !== 0) {
+      if (game[0].id != id) {
+        throw new HttpError(
+          "Bad Request! Game with this title already exists!"
+        );
+      }
+    }
+    return this.repository.update(id, {
+      title,
+      description,
+      genre,
+      price,
+      developed_by,
+      release_date,
+      platform_id,
+    });
   }
 
   async delete(id) {

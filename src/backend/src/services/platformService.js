@@ -8,7 +8,7 @@ export class PlatformService {
   async create({ name }) {
     let existingPlatform = await this.repository.findByName(name);
     if (Object.keys(existingPlatform).length !== 0) {
-      throw new HttpError(400, "Bad Request! Platform already exists!");
+      throw new HttpError("Bad Request! Platform already exists!");
     }
     return this.repository.create({ name });
   }
@@ -16,7 +16,7 @@ export class PlatformService {
   async findById(id) {
     const platform = await this.repository.findById(id);
     if (Object.keys(platform).length === 0) {
-      throw new HttpError(404, "Platform not found!");
+      throw new HttpError("Platform not found!");
     }
     return platform;
   }
@@ -37,15 +37,14 @@ export class PlatformService {
     return await this.repository.findPlatformGames(id);
   }
 
-  async update(id, platformDto) {
-    let platform = await this.findById(id);
-    if (platform.name === platformDto.name) {
+  async update(id, { name }) {
+    let platform = await this.repository.findByName(name);
+    if (Object.keys(platform).length !== 0) {
       throw new HttpError(
-        404,
-        "Bad Request! Platform with this title already exists!"
+        "Bad Request! Platform with this name already exists!"
       );
     }
-    return this.repository.update(id, platformDto);
+    return this.repository.update(id, { name });
   }
 
   async delete(id) {
