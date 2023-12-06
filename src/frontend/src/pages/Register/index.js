@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import bgImage from "../../assets/bg-image.png";
 import logo from "../../assets/logo-image.png";
@@ -11,9 +11,11 @@ import * as yup from "yup";
 
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Nome é obrigatório!"),
+  username: yup.string().required("Nome é obrigatório!"),
   email: yup
     .string()
     .email("Digite um e-mail válido!")
@@ -26,7 +28,7 @@ const schema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password")], "A senha não está igual!")
     .required("Confirmação de senha é obrigatória!"),
-  birthDate: yup.string().required("Data de nascimento é obrigatório!"),
+  birth_date: yup.string().required("Data de nascimento é obrigatório!"),
   gender: yup.string().required("Gênero é obrigatório!"),
 });
 
@@ -47,15 +49,39 @@ export const Register = () => {
     try {
       const response = await axios.post("http://localhost:3001/users", data);
 
-      // Se a requisição for bem-sucedida, faça o que for necessário aqui
-      console.log("Cadastro realizado com sucesso!", response.data);
+      toast.success("Cadastro realizado com sucesso!");
+      navigate("/login");
     } catch (error) {
-      // Se a requisição falhar, trate o erro aqui
-      console.error("Erro ao cadastrar:", error.message);
+      const errorMessages = {
+        "Bad Request! Username already in use!":
+          "Nome de usuário já está em uso",
+        "Bad Request! Email already in use!": "Email já está em uso",
+      };
+
+      toast.error(
+        errorMessages[error.response?.data?.message] || "Erro ao cadastrar"
+      );
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/users");
+
+        // Faça o que for necessário com os dados da resposta
+        console.log("Dados recebidos:", response.data);
+      } catch (error) {
+        // Trate o erro, se necessário
+        console.error("Erro ao buscar dados:", error.message);
+      }
+    };
+
+    fetchData(); // Chama a função para buscar os dados quando o componente é montado
+  }, []); // O segundo argumento vaz
   return (
     <div className={s.tela_desktop}>
+      <ToastContainer />
       <div className={s.bg_image}>
         <img src={bgImage} alt="bg-image" />
       </div>
@@ -71,16 +97,16 @@ export const Register = () => {
               id="nome"
               placeholder="NOME"
               style={
-                errors?.name
+                errors?.username
                   ? {
                       color: "red",
                       borderRadius: "6px 6px 0 0",
                     }
                   : { borderRadius: "6px 6px 0 0" }
               }
-              {...register("name")}
+              {...register("username")}
             />
-            {errors?.name && <span>{errors?.name?.message}</span>}
+            {errors?.username && <span>{errors?.username?.message}</span>}
             <input
               type="email"
               id="email"
@@ -111,10 +137,10 @@ export const Register = () => {
               type="date"
               id="birth-date"
               placeholder="DATA DE NASCIMENTO"
-              style={errors?.birthDate ? { color: "red" } : {}}
-              {...register("birthDate")}
+              style={errors?.birth_date ? { color: "red" } : {}}
+              {...register("birth_date")}
             />
-            {errors?.birthDate && <span>{errors?.birthDate?.message}</span>}
+            {errors?.birth_date && <span>{errors?.birth_date?.message}</span>}
             <select
               name="Select"
               type="genero"
