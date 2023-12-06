@@ -23,7 +23,7 @@ export const init = [
   price DOUBLE NOT NULL,
   developed_by VARCHAR(30) NOT NULL,
   release_date DATE NOT NULL,
-  image LONGBLOB);
+  image TEXT);
   `,
   `
   CREATE TABLE IF NOT EXISTS platforms

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { uploadFile } from "../middlewares/uploadFile.js";
+import { searchImage } from "../middlewares/searchImage.js";
 
 export const gameRoutes = (gameController) => {
   const gameRouter = Router();
