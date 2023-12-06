@@ -1,1 +1,4 @@
 node_modules
+
+# arquivo de configuração do backend
+src/backend/src/configs/config.js

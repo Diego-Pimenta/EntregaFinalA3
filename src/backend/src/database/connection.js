@@ -1,5 +1,5 @@
 import mysql from "mysql2";
-import { connectionUrl } from "../configs/db.config.js";
+import { connectionUrl } from "../configs/config.js";
 import { init } from "./queries/init.js";
 import { examples } from "./queries/examples.js";
 
