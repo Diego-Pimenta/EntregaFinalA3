@@ -3,6 +3,7 @@ import {
   deleteQuery,
   findByIdQuery,
   findByUserIdQuery,
+  findByGameIdQuery,
   findAllQuery,
   updateQuery,
 } from "./queries/gradeQueries.js";
@@ -22,6 +23,10 @@ export class GradeRepository {
 
   findByUserId(userId) {
     return this.db.query(findByUserIdQuery, [userId]);
+  }
+
+  findByGameId(gameId) {
+    return this.db.query(findByGameIdQuery, [gameId]);
   }
 
   findAll() {

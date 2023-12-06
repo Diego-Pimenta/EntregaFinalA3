@@ -3,35 +3,48 @@ import { connectionUrl } from "../configs/db.config.js";
 import { init } from "./queries/init.js";
 import { examples } from "./queries/examples.js";
 
-let instance = null;
-
-export const getDatabaseConnection = () => {
-  if (!instance) {
-    instance = new DatabaseConnection();
-  }
-  return instance;
-};
-
-class DatabaseConnection {
+export default class DatabaseConnection {
   constructor() {
+    this.conn = null;
+    this.connect();
+  }
+
+  static #instance = null; // variable for storing the singleton instance
+
+  // returns an instance of the class if it does not exist, else creates a new one
+  static getInstance() {
+    if (!DatabaseConnection.#instance) {
+      DatabaseConnection.#instance = new DatabaseConnection();
+    }
+    return DatabaseConnection.#instance;
+  }
+
+  // establishes the database connection
+  connect() {
     try {
-      // create MySQL connection and allow multipleStatements so we can run our scripts with multiple lines
       this.conn = mysql.createConnection(connectionUrl, {
         multipleStatements: true,
       });
-      this.createTables().then(() => this.insertExamples());
-      console.log("Connection has been established successfully.");
-    } catch (err) {
-      console.error("Unable to connect to the database:", err);
+      // connects to the database
+      this.conn.connect((error) => {
+        if (error) {
+          console.error("Unable to connect to the database:", error);
+        } else {
+          console.log("Connection has been established successfully");
+          this.setupDatabase();
+        }
+      });
+    } catch (error) {
+      console.error("Error establishing database connection:", error);
     }
   }
 
+  // runs a query on the database
   async query(sql, params = []) {
-    // method to run our sql scripts using Promise
     return new Promise((resolve, reject) => {
-      this.conn.query(sql, params, function (err, results) {
-        if (err) {
-          reject(err);
+      this.conn.query(sql, params, function (error, results) {
+        if (error) {
+          reject(error);
         } else {
           resolve(results);
         }
@@ -39,20 +52,31 @@ class DatabaseConnection {
     });
   }
 
+  // sets up the database by creating tables and inserting examples
+  async setupDatabase() {
+    await this.createTables();
+    await this.insertExamples();
+  }
+
   async createTables() {
-    for (let q of init) {
-      await this.query(q);
+    try {
+      for (let query of init) {
+        await this.query(query);
+      }
+      console.log("Tables created");
+    } catch (error) {
+      console.error("Error creating tables:", error);
     }
-    console.log("Tables created");
   }
 
   async insertExamples() {
     try {
-      for (let q of examples) {
-        await this.query(q);
+      for (let query of examples) {
+        await this.query(query);
       }
-    } catch (e) {
-      console.log("Examples may have been already inserted");
+      console.log("Examples inserted");
+    } catch (error) {
+      console.log("Examples may already exist");
     }
   }
 }

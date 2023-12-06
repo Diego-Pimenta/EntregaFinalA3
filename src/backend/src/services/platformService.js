@@ -1,30 +1,29 @@
 import { HttpError } from "./exceptions/httpError.js";
 
 export class PlatformService {
-  constructor(repository, gameRepository) {
+  constructor(repository) {
     this.repository = repository;
-    this.gameRepository = gameRepository;
   }
 
   async create({ name }) {
     let existingPlatform = await this.repository.findByName(name);
-    if (existingPlatform != null) {
-      throw new HttpError(400, "Bad Request! Platform already exists!");
+    if (Object.keys(existingPlatform).length !== 0) {
+      throw new HttpError("Bad Request! Platform already exists!");
     }
     return this.repository.create({ name });
   }
 
   async findById(id) {
     const platform = await this.repository.findById(id);
-    if (platform == null) {
-      throw new HttpError(404, "Platform not found!");
+    if (Object.keys(platform).length === 0) {
+      throw new HttpError("Platform not found!");
     }
     return platform;
   }
 
   async findByName(name) {
     const platform = await this.repository.findByName(name);
-    if (platform == null) {
+    if (Object.keys(platform).length === 0) {
       throw new HttpError(404, "Platform not found!");
     }
     return platform;
@@ -35,37 +34,17 @@ export class PlatformService {
   }
 
   async findPlatformGames(id) {
-    const games = await this.repository.findPlatformGames(id);
-    return games;
+    return await this.repository.findPlatformGames(id);
   }
 
-  async addGame(id, gameId) {
-    await this.repository.findPlatformGames(id);
-    let game = await this.gameRepository.findById(gameId);
-    if (game == null) {
-      throw new HttpError(400, "Game not found!");
-    }
-    return this.repository.addGame(id, gameId);
-  }
-
-  async removeGame(id, gameId) {
-    await this.repository.findById(id);
-    const game = await this.gameRepository.findById(gameId);
-    if (game == null) {
-      throw new HttpError(404, "Game not found!");
-    }
-    return this.repository.removeGame(id, gameId);
-  }
-
-  async update(id, platformDto) {
-    let platform = await this.findById(platformDto.id);
-    if (platform.name === platformDto.name) {
+  async update(id, { name }) {
+    let platform = await this.repository.findByName(name);
+    if (Object.keys(platform).length !== 0) {
       throw new HttpError(
-        404,
-        "Bad Request! Platform with this title already exists!"
+        "Bad Request! Platform with this name already exists!"
       );
     }
-    return this.repository.update(id, platformDto);
+    return this.repository.update(id, { name });
   }
 
   async delete(id) {

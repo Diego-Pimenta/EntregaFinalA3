@@ -33,6 +33,16 @@ export class GradeController {
     }
   }
 
+  async findByGameId(req, res, next) {
+    try {
+      const gameId = req.params.gameId;
+      const result = await this.service.findByGameId(gameId);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async findAll(req, res, next) {
     try {
       const result = await this.service.findAll();

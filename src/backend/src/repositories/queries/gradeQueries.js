@@ -14,6 +14,10 @@ export const findByUserIdQuery = `
    SELECT * FROM grades WHERE user_id = ?;
 `;
 
+export const findByGameIdQuery = `
+   SELECT * FROM grades WHERE game_id = ?;
+`;
+
 export const findAllQuery = `
    SELECT * FROM grades;
 `;

@@ -9,36 +9,36 @@ export class StatusService {
 
   async create({ user_id, game_id, status }) {
     let user = await this.userRepository.findById(user_id);
-    if (user == null) {
-      throw new HttpError(404, "User not found!");
+    if (Object.keys(user).length === 0) {
+      throw new HttpError("User not found!");
     }
     let game = await this.gameRepository.findById(game_id);
-    if (game == null) {
-      throw new HttpError(404, "Game not found!");
+    if (Object.keys(game).length === 0) {
+      throw new HttpError("Game not found!");
     }
     return this.repository.create({ user_id, game_id, status });
   }
 
   async findById(id) {
     const status = await this.repository.findById(id);
-    if (status == null) {
-      throw new HttpError(404, "Status not found!");
+    if (Object.keys(status).length === 0) {
+      throw new HttpError("Status not found!");
     }
     return status;
   }
 
   async findByUserId(userId) {
     const user = await this.userRepository.findById(userId);
-    if (user == null) {
-      throw new HttpError(404, "User not found!");
+    if (Object.keys(user).length === 0) {
+      throw new HttpError("User not found!");
     }
     return this.repository.findByUserId(userId);
   }
 
   async findByGameId(gameId) {
-    const game = await this.userRepository.findById(gameId);
-    if (game == null) {
-      throw new HttpError(404, "Game not found!");
+    const game = await this.gameRepository.findById(gameId);
+    if (Object.keys(game).length === 0) {
+      throw new HttpError("Game not found!");
     }
     return this.repository.findByGameId(gameId);
   }
@@ -53,10 +53,7 @@ export class StatusService {
   }
 
   async update(id, statusDto) {
-    let status = await this.findById(id);
-    if (status == null) {
-      throw new HttpError(404, "Status not found!");
-    }
+    await this.findById(id);
     return this.repository.update(id, statusDto);
   }
 }

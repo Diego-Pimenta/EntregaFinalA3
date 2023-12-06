@@ -7,12 +7,12 @@ export class UserService {
 
   async create({ username, email, password, birth_date, gender }) {
     let existingUser = await this.repository.findByUsername(username);
-    if (existingUser != null) {
-      throw new HttpError(400, "Bad Request! Username already in use!");
+    if (Object.keys(existingUser).length !== 0) {
+      throw new HttpError("Bad Request! Username already in use!");
     }
     existingUser = await this.repository.findByEmail(email);
-    if (existingUser != null) {
-      throw new HttpError(400, "Bad Request! Email already in use!");
+    if (Object.keys(existingUser).length !== 0) {
+      throw new HttpError("Bad Request! Email already in use!");
     }
     return this.repository.create({
       username,
@@ -29,24 +29,8 @@ export class UserService {
 
   async findById(id) {
     const user = await this.repository.findById(id);
-    if (user == null) {
-      throw new HttpError(404, "User not found!");
-    }
-    return user;
-  }
-
-  async findByUsername(username) {
-    const user = await this.repository.findByUsername(username);
-    if (user == null) {
-      throw new HttpError(404, "User not found!");
-    }
-    return user;
-  }
-
-  async findByEmail(email) {
-    const user = await this.repository.findByEmail(email);
-    if (user == null) {
-      throw new HttpError(404, "User not found!");
+    if (Object.keys(user).length === 0) {
+      throw new HttpError("User not found!");
     }
     return user;
   }
@@ -56,8 +40,8 @@ export class UserService {
     return this.repository.delete(id);
   }
 
-  async update(id, userDto) {
+  async update(id, { password }) {
     await this.findById(id);
-    return this.repository.update(id, userDto);
+    return this.repository.update(id, { password });
   }
 }

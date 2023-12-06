@@ -9,6 +9,7 @@ import {
 } from "./queries/gameQueries.js";
 import {
   createGamePlatformQuery,
+  updateGamePlatformQuery,
   deleteGamePlatformQuery,
 } from "./queries/gamePlatformQueries.js";
 
@@ -34,7 +35,7 @@ export class GameRepository {
       developed_by,
       release_date,
     ]);
-    await this.associate({ game_id: createdGame.id, platform_id });
+    await this.associate({ game_id: createdGame.insertId, platform_id });
     return createdGame;
   }
 
@@ -58,15 +59,32 @@ export class GameRepository {
     return this.db.query(createGamePlatformQuery, [game_id, platform_id]);
   }
 
-  disassociate({ game_id, platform_id }) {
-    return this.db.query(deleteGamePlatformQuery, [game_id, platform_id]);
+  updateAssociation(gameId, { platform_id }) {
+    return this.db.query(updateGamePlatformQuery, [platform_id, gameId]);
   }
 
-  delete(id) {
+  disassociate({ game_id }) {
+    return this.db.query(deleteGamePlatformQuery, [game_id]);
+  }
+
+  async delete(id) {
+    await this.disassociate(id);
     return this.db.query(deleteQuery, [id]);
   }
 
-  update(id, { title, description, genre, price, developed_by, release_date }) {
+  async update(
+    id,
+    {
+      title,
+      description,
+      genre,
+      price,
+      developed_by,
+      release_date,
+      platform_id,
+    }
+  ) {
+    await this.updateAssociation(id, { platform_id });
     return this.db.query(updateQuery, [
       title,
       description,

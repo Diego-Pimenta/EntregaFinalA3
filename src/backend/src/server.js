@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { getDatabaseConnection } from "./database/connection.js";
+import DatabaseConnection from "./database/connection.js";
 import cors from "cors";
 import { userModule } from "./modules/userModule.js";
 import { gameModule } from "./modules/gameModule.js";
@@ -8,23 +8,23 @@ import { statusModule } from "./modules/statusModule.js";
 import { platformModule } from "./modules/platformModule.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
-class App {
+class Server {
   constructor() {
-    this.db = getDatabaseConnection();
+    this.db = DatabaseConnection.getInstance();
     this.app = express();
-    this.middlewares();
-    this.routes();
-    this.listen();
+    this.configureApp();
   }
 
-  middlewares() {
+  // configures middlewares for the Express
+  configureApp() {
     // solution for the same-origin policy, allowing cross-origin HTTP requests
     this.app.use(cors());
-    // parses the incoming request with JSON payloads
+    // parses the incoming requests with JSON payloads
     this.app.use(express.json());
+    this.setupRoutes();
   }
 
-  routes() {
+  setupRoutes() {
     const router = Router();
     router
       .use("/users", userModule(this.db))
@@ -36,11 +36,13 @@ class App {
     this.app.use(router);
   }
 
-  listen() {
-    this.app.listen(3001, () => {
-      console.log("Server started on port 3001");
+  startServer(port) {
+    this.app.listen(port, () => {
+      console.log(`Server started on port ${port}`);
     });
   }
 }
 
-let x = new App();
+const PORT = 3001;
+const server = new Server();
+server.startServer(PORT);
