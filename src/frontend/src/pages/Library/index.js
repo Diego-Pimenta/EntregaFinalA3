@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Header } from "../../components/header";
 import { FooterNav } from "../../components/footerNav";
+import { CardGames } from "../../components/cardGames";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -9,18 +10,18 @@ import s from "./library.module.css";
 
 export const Library = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [backendData, setBackendData] = useState(null);
+  const [gamesData, setGamesData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3001/games");
-        setBackendData(response.data);
+        setGamesData(response.data);
       } catch (error) {
         console.error("Erro ao fazer chamada para o backend:", error);
       }
     };
-
+    console.log(gamesData);
     fetchData();
   }, []);
 
@@ -71,7 +72,19 @@ export const Library = () => {
             </div>
           </div>
           <div className={s.main_content}>
-            
+            <div className={s.container_games}>
+              {gamesData.map((cardGame) => (
+                <Link to={`/library/${cardGame.id}`}>
+                  <CardGames
+                    key={cardGame.id}
+                    title={cardGame.title}
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className={s.footer}>
+            <p>Copyright © 2023 All rights Reserved - GamesLibrary</p>
           </div>
         </div>
       )}
