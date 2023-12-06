@@ -6,6 +6,6 @@ export const errorHandler = (err, req, res, next) => {
     success: false,
     status: errorStatus,
     message: errorMsg,
-    // stack: err.stack,
+    stack: err.stack,
   });
 };

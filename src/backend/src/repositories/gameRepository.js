@@ -4,12 +4,12 @@ import {
   findByIdQuery,
   findByTitleQuery,
   findByPlatformIdQuery,
+  findPlatformsQuery,
   findAllQuery,
   updateQuery,
 } from "./queries/gameQueries.js";
 import {
   createGamePlatformQuery,
-  updateGamePlatformQuery,
   deleteGamePlatformQuery,
 } from "./queries/gamePlatformQueries.js";
 
@@ -18,25 +18,24 @@ export class GameRepository {
     this.db = db;
   }
 
-  async create({
+  create({
     title,
     description,
     genre,
     price,
     developed_by,
     release_date,
-    platform_id,
+    image,
   }) {
-    const createdGame = await this.db.query(createQuery, [
+    return this.db.query(createQuery, [
       title,
       description,
       genre,
       price,
       developed_by,
       release_date,
+      image,
     ]);
-    await this.associate({ game_id: createdGame.insertId, platform_id });
-    return createdGame;
   }
 
   findById(id) {
@@ -45,6 +44,10 @@ export class GameRepository {
 
   findByPlatform(platform_id) {
     return this.db.query(findByPlatformIdQuery, [platform_id]);
+  }
+
+  findPlatforms(game_id) {
+    return this.db.query(findPlatformsQuery, [game_id]);
   }
 
   findByTitle(title) {
@@ -59,32 +62,15 @@ export class GameRepository {
     return this.db.query(createGamePlatformQuery, [game_id, platform_id]);
   }
 
-  updateAssociation(gameId, { platform_id }) {
-    return this.db.query(updateGamePlatformQuery, [platform_id, gameId]);
-  }
-
   disassociate({ game_id }) {
     return this.db.query(deleteGamePlatformQuery, [game_id]);
   }
 
-  async delete(id) {
-    await this.disassociate(id);
+  delete(id) {
     return this.db.query(deleteQuery, [id]);
   }
 
-  async update(
-    id,
-    {
-      title,
-      description,
-      genre,
-      price,
-      developed_by,
-      release_date,
-      platform_id,
-    }
-  ) {
-    await this.updateAssociation(id, { platform_id });
+  update(id, { title, description, genre, price, developed_by, release_date }) {
     return this.db.query(updateQuery, [
       title,
       description,

@@ -62,4 +62,40 @@ export class GameController {
       next(error);
     }
   }
+
+  async associatePlatform(req, res, next) {
+    try {
+      const { gameId, platformId } = req.params;
+      const result = await this.service.associate({
+        gameId: gameId,
+        platformId: platformId,
+      });
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async disassociatePlatform(req, res, next) {
+    try {
+      const { gameId, platformId } = req.params;
+      const result = await this.service.disassociate({
+        gameId: gameId,
+        platformId: platformId,
+      });
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async findPlatforms(req, res, next) {
+    try {
+      const gameId = req.params.gameId;
+      const result = await this.service.findPlatforms(gameId);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

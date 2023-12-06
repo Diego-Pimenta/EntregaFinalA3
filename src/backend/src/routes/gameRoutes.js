@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { searchImage } from "../middlewares/searchImage.js";
 
 export const gameRoutes = (gameController) => {
   const gameRouter = Router();
@@ -12,8 +11,18 @@ export const gameRoutes = (gameController) => {
     .get((req, res, next) => gameController.findById(req, res, next))
     .delete((req, res, next) => gameController.delete(req, res, next))
     .put((req, res, next) => gameController.update(req, res, next));
+  // filter option for future implementations
   gameRouter
     .route("/platform/:platformId")
     .get((req, res, next) => gameController.findByPlatform(req, res, next));
+  gameRouter
+    .route("/:gameId/platforms")
+    .get((req, res, next) => gameController.findPlatforms(req, res, next));
+  gameRouter
+    .route("/:gameId/platform/:platformId")
+    .post((req, res, next) => gameController.associatePlatform(req, res, next))
+    .delete((req, res, next) =>
+      gameController.disassociatePlatform(req, res, next)
+    );
   return gameRouter;
 };

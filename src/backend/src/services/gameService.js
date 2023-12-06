@@ -1,9 +1,10 @@
 import { HttpError } from "./exceptions/httpError.js";
 
 export class GameService {
-  constructor(repository, platformRepository) {
+  constructor(repository, platformRepository, imageSearchService) {
     this.repository = repository;
     this.platformRepository = platformRepository;
+    this.imageSearchService = imageSearchService;
   }
 
   async create({
@@ -13,16 +14,12 @@ export class GameService {
     price,
     developed_by,
     release_date,
-    platform_id,
   }) {
     let existingGame = await this.repository.findByTitle(title);
     if (Object.keys(existingGame).length !== 0) {
       throw new HttpError("Bad Request! Game already exists!");
     }
-    let existingPlatform = await this.platformRepository.findById(platform_id);
-    if (Object.keys(existingPlatform).length === 0) {
-      throw new HttpError("Platform not found!");
-    }
+    let imageUrl = await this.imageSearchService.getImageUrl(title);
     return this.repository.create({
       title,
       description,
@@ -30,14 +27,14 @@ export class GameService {
       price,
       developed_by,
       release_date,
-      platform_id,
+      image: imageUrl,
     });
   }
 
   async findById(id) {
     const game = await this.repository.findById(id);
     if (Object.keys(game).length === 0) {
-      throw new HttpError(404, "Game not found!");
+      throw new HttpError("Game not found!");
     }
     return game;
   }
@@ -45,17 +42,25 @@ export class GameService {
   async findByTitle(title) {
     const game = await this.repository.findByTitle(title);
     if (Object.keys(game).length === 0) {
-      throw new HttpError(404, "Game not found!");
+      throw new HttpError("Game not found!");
     }
     return game;
   }
 
   async findByPlatform(platformId) {
-    const game = await this.repository.findByPlatform(platformId);
+    const games = await this.repository.findByPlatform(platformId);
+    if (Object.keys(games).length === 0) {
+      throw new HttpError("Games not found!");
+    }
+    return games;
+  }
+
+  async findPlatforms(gameId) {
+    const game = await this.repository.findById(gameId);
     if (Object.keys(game).length === 0) {
       throw new HttpError("Game not found!");
     }
-    return game;
+    return this.repository.findPlatforms(gameId);
   }
 
   findAll() {
@@ -64,24 +69,18 @@ export class GameService {
 
   async update(
     id,
-    {
-      title,
-      description,
-      genre,
-      price,
-      developed_by,
-      release_date,
-      platform_id,
-    }
+    { title, description, genre, price, developed_by, release_date }
   ) {
     const game = await this.repository.findByTitle(title);
     if (Object.keys(game).length !== 0) {
+      // allows changes to the game properties keeping the same title
       if (game[0].id != id) {
         throw new HttpError(
           "Bad Request! Game with this title already exists!"
         );
       }
     }
+    let imageUrl = await this.imageSearchService.getImageUrl(title);
     return this.repository.update(id, {
       title,
       description,
@@ -89,12 +88,36 @@ export class GameService {
       price,
       developed_by,
       release_date,
-      platform_id,
+      image: imageUrl,
     });
   }
 
   async delete(id) {
     await this.findById(id);
     return this.repository.delete(id);
+  }
+
+  async associate({ game_id, platform_id }) {
+    let existingGame = await this.repository.findById(game_id);
+    if (Object.keys(existingGame).length === 0) {
+      throw new HttpError("Game not found!");
+    }
+    let existingPlatform = await this.platformRepository.findById(platform_id);
+    if (Object.keys(existingPlatform).length === 0) {
+      throw new HttpError("Platform not found!");
+    }
+    return this.repository.associate({ game_id, platform_id });
+  }
+
+  async disassociate({ gameId, platformId }) {
+    let existingGame = await this.repository.findById(gameId);
+    if (Object.keys(existingGame).length !== 0) {
+      throw new HttpError("Game not found!");
+    }
+    let existingPlatform = await this.platformRepository.findById(platformId);
+    if (Object.keys(existingPlatform).length !== 0) {
+      throw new HttpError("Platform not found!");
+    }
+    return this.repository.disassociate({ gameId, platformId });
   }
 }

@@ -54,16 +54,16 @@ export const examples = [
   `,
   `
   INSERT INTO statuses(id, user_id, game_id, status) VALUES
-  (1, 1, 1, 'jogado'),
-  (2, 1, 2, 'zerado'),
+  (1, 1, 1, 'recomendo'),
+  (2, 1, 2, 'jogado'),
   (3, 1, 3, 'jogando'),
-  (4, 2, 4, 'recomendo'),
-  (5, 2, 5, 'não recomendo'),
-  (6, 2, 6, 'abandonado'),
-  (7, 3, 7, 'muito bom'),
+  (4, 2, 4, 'não recomendo'),
+  (5, 2, 5, 'jogado'),
+  (6, 2, 6, 'jogando'),
+  (7, 3, 7, 'recomendo'),
   (8, 3, 8, 'zerado'),
-  (9, 3, 9, 'jogando'),
-  (10, 3, 10, 'super recomendo');
+  (9, 3, 9, 'recomendo'),
+  (10, 3, 10, 'zerado');
   `,
   `
   INSERT INTO games_platforms(id, game_id, platform_id) VALUES
