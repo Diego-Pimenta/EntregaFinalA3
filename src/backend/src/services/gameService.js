@@ -109,15 +109,15 @@ export class GameService {
     return this.repository.associate({ game_id, platform_id });
   }
 
-  async disassociate({ gameId, platformId }) {
-    let existingGame = await this.repository.findById(gameId);
-    if (Object.keys(existingGame).length !== 0) {
+  async disassociate({ game_id, platform_id }) {
+    let existingGame = await this.repository.findById(game_id);
+    if (Object.keys(existingGame).length === 0) {
       throw new HttpError("Game not found!");
     }
-    let existingPlatform = await this.platformRepository.findById(platformId);
-    if (Object.keys(existingPlatform).length !== 0) {
+    let existingPlatform = await this.platformRepository.findById(platform_id);
+    if (Object.keys(existingPlatform).length === 0) {
       throw new HttpError("Platform not found!");
     }
-    return this.repository.disassociate({ gameId, platformId });
+    return this.repository.disassociate({ game_id, platform_id });
   }
 }

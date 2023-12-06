@@ -67,8 +67,8 @@ export class GameController {
     try {
       const { gameId, platformId } = req.params;
       const result = await this.service.associate({
-        gameId: gameId,
-        platformId: platformId,
+        game_id: gameId,
+        platform_id: platformId,
       });
       res.status(200).json(result);
     } catch (error) {
@@ -80,8 +80,8 @@ export class GameController {
     try {
       const { gameId, platformId } = req.params;
       const result = await this.service.disassociate({
-        gameId: gameId,
-        platformId: platformId,
+        game_id: gameId,
+        platform_id: platformId,
       });
       res.status(200).json(result);
     } catch (error) {
