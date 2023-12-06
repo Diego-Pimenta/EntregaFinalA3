@@ -26,20 +26,38 @@ const schema = yup.object().shape({
 export const Login = () => {
   const navigate = useNavigate();
 
-  const [backendData, setBackendData] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/users");
-        setBackendData(response.data);
-      } catch (error) {
-        console.error("Erro ao fazer chamada para o backend:", error);
-      }
-    };
+    // Verificar se há um token armazenado localmente
+    const token = localStorage.getItem("token");
 
-    fetchData();
+    if (token) {
+      // Simular uma verificação de token (pode ser mais sofisticada no seu aplicativo)
+      // Decodificar o token, verificar a validade, etc.
+      // Aqui, estamos apenas assumindo que o token é válido.
+      setLoggedIn(true);
+      setUser({ username: "usuario" });
+    }
   }, []);
+
+  const handleLogin = async (username, password) => {
+    try {
+      const response = await axios.post("http://localhost:3001/users", {
+        username,
+        password,
+      });
+
+      // Armazenar o token localmente
+      localStorage.setItem("token", response.data.token);
+
+      setLoggedIn(true);
+      setUser({ username });
+    } catch (error) {
+      console.error("Erro ao fazer login:", error.message);
+    }
+  };
 
   const {
     register,
@@ -49,9 +67,26 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    navigate("/");
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.get("http://localhost:3001/users", data);
+
+      // Armazenar o token localmente
+      localStorage.setItem("token", response.data.token);
+
+      // Atualizar o estado do componente
+      // ...
+    } catch (error) {
+      console.error("Erro ao fazer login:", error.message);
+    }
+  };
+
+  const handleLogout = () => {
+    // Limpar o token armazenado localmente
+    localStorage.removeItem("token");
+
+    // Atualizar o estado do componente
+    // ...
   };
 
   return (

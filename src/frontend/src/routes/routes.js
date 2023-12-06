@@ -9,7 +9,7 @@ import { Home } from "../pages/Home";
 import { Library } from "../pages/Library";
 import { Help } from "../pages/Help";
 import { NewGame } from "../pages/NewGame";
-
+import { DetailsGame } from "../pages/DetailsGame";
 
 export const router = createBrowserRouter([
   {
@@ -40,5 +40,9 @@ export const router = createBrowserRouter([
   {
     path: "newGame",
     element: <NewGame />,
+  },
+  {
+    path: "/library/:id",
+    element: <DetailsGame />,
   },
 ]);

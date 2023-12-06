@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const schema = yup.object().shape({
   name: yup.string().required("Nome é obrigatório!"),
@@ -40,11 +41,19 @@ export const Register = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    navigate("/");
-  };
+  const onSubmit = async (data) => {
+    delete data.passwordConfirm;
 
+    try {
+      const response = await axios.post("http://localhost:3001/users", data);
+
+      // Se a requisição for bem-sucedida, faça o que for necessário aqui
+      console.log("Cadastro realizado com sucesso!", response.data);
+    } catch (error) {
+      // Se a requisição falhar, trate o erro aqui
+      console.error("Erro ao cadastrar:", error.message);
+    }
+  };
   return (
     <div className={s.tela_desktop}>
       <div className={s.bg_image}>

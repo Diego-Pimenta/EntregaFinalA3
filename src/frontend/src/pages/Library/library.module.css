@@ -50,12 +50,41 @@
     color: #141b26;
   }
 
-  .main_content{
+  .main_content {
     margin-top: 20px;
     width: 80vw;
-    background-color: red;
-    height: 500px;
+    height: 400px;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
   }
+
+  .container_games {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  .main_content::-webkit-scrollbar {
+    background-color: #000000;
+    border: 1px solid #ee6c4d;
+  }
+
+  .main_content::-webkit-scrollbar-thumb {
+    background-color: #EE6C4D;
+  }
+
+  .footer {
+    margin-top: 10px;
+    color: #fff;
+  }
+
+
 }
 
 @media (min-width: 320px) and (max-width: 780px) {
