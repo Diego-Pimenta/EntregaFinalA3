@@ -1,7 +1,7 @@
 export const examples = [
   `
   INSERT INTO users(id, username, email, password, birth_date, gender) VALUES
-  (1, 'user1', 'test1@gmail.com', '123456', '2002-01-01', 'masc'),
+  (1, 'user1', 'user1@gmail.com', '123456', '2002-01-01', 'masc'),
   (2, 'user2', 'user2@gmail.com', '123456', '2003-01-01', 'masc'),
   (3, 'user3', 'user3@gmail.com', '123456', '2002-01-01', 'masc'),
   (4, 'user4', 'user4@gmail.com', '123456', '2003-01-01', 'masc'),
@@ -54,16 +54,16 @@ export const examples = [
   `,
   `
   INSERT INTO statuses(id, user_id, game_id, status) VALUES
-  (1, 1, 1, 'recomendo'),
-  (2, 1, 2, 'jogado'),
-  (3, 1, 3, 'jogando'),
-  (4, 2, 4, 'não recomendo'),
-  (5, 2, 5, 'jogado'),
-  (6, 2, 6, 'jogando'),
-  (7, 3, 7, 'recomendo'),
-  (8, 3, 8, 'zerado'),
-  (9, 3, 9, 'recomendo'),
-  (10, 3, 10, 'zerado');
+  (1, 1, 1, 'Recomendo'),
+  (2, 1, 2, 'Jogado'),
+  (3, 1, 3, 'Jogando'),
+  (4, 2, 4, 'Não recomendo'),
+  (5, 2, 5, 'Jogado'),
+  (6, 2, 6, 'Jogando'),
+  (7, 3, 7, 'Recomendo'),
+  (8, 3, 8, 'Zerado'),
+  (9, 3, 9, 'Recomendo'),
+  (10, 3, 10, 'Zerado');
   `,
   `
   INSERT INTO games_platforms(id, game_id, platform_id) VALUES

@@ -40,9 +40,11 @@ export class PlatformService {
   async update(id, { name }) {
     let platform = await this.repository.findByName(name);
     if (Object.keys(platform).length !== 0) {
-      throw new HttpError(
-        "Bad Request! Platform with this name already exists!"
-      );
+      if (platform[0].id != id) {
+        throw new HttpError(
+          "Bad Request! Platform with this name already exists!"
+        );
+      }
     }
     return this.repository.update(id, { name });
   }

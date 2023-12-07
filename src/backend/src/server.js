@@ -6,6 +6,7 @@ import { gameModule } from "./modules/gameModule.js";
 import { gradeModule } from "./modules/gradeModule.js";
 import { statusModule } from "./modules/statusModule.js";
 import { platformModule } from "./modules/platformModule.js";
+import { authModule } from "./modules/authModule.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 class Server {
@@ -32,6 +33,7 @@ class Server {
       .use("/grades", gradeModule(this.db))
       .use("/statuses", statusModule(this.db))
       .use("/platforms", platformModule(this.db))
+      .use("/auth", authModule(this.db))
       .use(errorHandler);
     this.app.use(router);
   }

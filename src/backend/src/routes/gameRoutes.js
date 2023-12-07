@@ -11,7 +11,6 @@ export const gameRoutes = (gameController) => {
     .get((req, res, next) => gameController.findById(req, res, next))
     .delete((req, res, next) => gameController.delete(req, res, next))
     .put((req, res, next) => gameController.update(req, res, next));
-  // filter option for future implementations
   gameRouter
     .route("/platform/:platformId")
     .get((req, res, next) => gameController.findByPlatform(req, res, next));

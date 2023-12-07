@@ -33,8 +33,8 @@ export class GradeRepository {
     return this.db.query(findAllQuery);
   }
 
-  update(id, { query }) {
-    return this.db.query(updateQuery, [query, id]);
+  update(id, { grade }) {
+    return this.db.query(updateQuery, [grade, id]);
   }
 
   delete(id) {

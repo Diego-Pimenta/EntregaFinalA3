@@ -73,7 +73,6 @@ export class GameService {
   ) {
     const game = await this.repository.findByTitle(title);
     if (Object.keys(game).length !== 0) {
-      // allows changes to the game properties keeping the same title
       if (game[0].id != id) {
         throw new HttpError(
           "Bad Request! Game with this title already exists!"
