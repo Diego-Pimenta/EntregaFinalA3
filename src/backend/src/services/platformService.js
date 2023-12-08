@@ -1,8 +1,9 @@
 import { HttpError } from "./exceptions/httpError.js";
 
 export class PlatformService {
-  constructor(repository) {
+  constructor(repository, gameRepository) {
     this.repository = repository;
+    this.gameRepository = gameRepository;
   }
 
   async create({ name }) {
@@ -33,7 +34,11 @@ export class PlatformService {
     return this.repository.findAll();
   }
 
-  findPlatformGames(id) {
+  async findPlatformGames(id) {
+    let platform = await this.repository.findById(id);
+    if (platform.length === 0) {
+      throw new HttpError(404, "Platform not found!");
+    }
     return this.repository.findPlatformGames(id);
   }
 
@@ -52,6 +57,13 @@ export class PlatformService {
 
   async delete(id) {
     await this.findById(id);
+    let games = await this.findPlatformGames(id);
+    for (let game of games) {
+      await this.gameRepository.disassociate({
+        game_id: game.id,
+        platform_id: id,
+      });
+    }
     return this.repository.delete(id);
   }
 }

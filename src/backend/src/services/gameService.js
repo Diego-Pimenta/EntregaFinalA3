@@ -54,16 +54,24 @@ export class GameService {
     return game;
   }
 
-  findByPlatform(platformId) {
-    return this.repository.findByPlatform(platformId);
+  async findByPlatform(platformId) {
+    const games = await this.repository.findByPlatform(platformId);
+    if (games.length === 0) {
+      throw new HttpError(404, "Platform not found!");
+    }
+    return games;
   }
 
   async findPlatforms(gameId) {
-    const game = await this.repository.findById(gameId);
+    let game = await this.repository.findById(gameId);
     if (game.length === 0) {
       throw new HttpError(404, "Game not found!");
     }
-    return this.repository.findPlatforms(gameId);
+    const platforms = await this.repository.findPlatforms(gameId);
+    if (platforms.length === 0) {
+      throw new HttpError(404, "Platforms not found!");
+    }
+    return platforms;
   }
 
   findAll() {
@@ -112,10 +120,6 @@ export class GameService {
   async delete(id) {
     await this.findById(id);
     let platforms = await this.findPlatforms(id);
-    if (platforms.length === 0) {
-      // after implementing platform's crud, this function may cause erros
-      throw new HttpError(500, "Internal Server Error");
-    }
     for (let platform of platforms) {
       await this.disassociate({ game_id: id, platform_id: platform.id });
     }
