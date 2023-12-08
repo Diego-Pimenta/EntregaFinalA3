@@ -70,7 +70,10 @@ export class GameRepository {
     return this.db.query(deleteQuery, [id]);
   }
 
-  update(id, { title, description, genre, price, developed_by, release_date }) {
+  update(
+    id,
+    { title, description, genre, price, developed_by, release_date, image }
+  ) {
     return this.db.query(updateQuery, [
       title,
       description,
@@ -78,6 +81,7 @@ export class GameRepository {
       price,
       developed_by,
       release_date,
+      image,
       id,
     ]);
   }

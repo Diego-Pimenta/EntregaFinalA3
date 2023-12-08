@@ -15,7 +15,7 @@ export const findByTitleQuery = `
 `;
 
 export const findByPlatformIdQuery = `
-   SELECT games.*, platforms.name AS platform FROM (games INNER JOIN games_platforms ON games.id = games_platforms.game_id) INNER JOIN platforms ON platforms.id = games_platforms.platform_id WHERE platforms.id = ?;
+   SELECT games.* FROM games INNER JOIN games_platforms ON games.id = games_platforms.game_id WHERE games_platforms.platform_id = ?;
 `;
 
 export const findPlatformsQuery = `
@@ -27,5 +27,5 @@ export const findAllQuery = `
 `;
 
 export const updateQuery = `
-   UPDATE games SET title = ?, description = ?, genre = ?, price = ?, developed_by = ?, release_date = ? WHERE id = ?;
+   UPDATE games SET title = ?, description = ?, genre = ?, price = ?, developed_by = ?, release_date = ?, image = ? WHERE id = ?;
 `;

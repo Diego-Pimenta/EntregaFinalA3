@@ -57,7 +57,7 @@ export class GameService {
   async findByPlatform(platformId) {
     const games = await this.repository.findByPlatform(platformId);
     if (games.length === 0) {
-      throw new HttpError(404, "Platform not found!");
+      throw new HttpError(404, "Games not found!");
     }
     return games;
   }
@@ -103,6 +103,7 @@ export class GameService {
     if (platform.length === 0) {
       throw new HttpError(404, "Platform not found!");
     }
+    platform = await this.repository.findPlatforms(id);
     let imageUrl = await this.imageSearchService.getImageUrl(title);
     const gameDto = await this.repository.update(id, {
       title,
@@ -113,7 +114,8 @@ export class GameService {
       release_date,
       image: imageUrl,
     });
-    await this.updateAssociation({ game_id: id, platform_id });
+    await this.disassociate({ game_id: id, platform_id: platform[0].id });
+    await this.associate({ game_id: id, platform_id });
     return gameDto;
   }
 
@@ -124,11 +126,6 @@ export class GameService {
       await this.disassociate({ game_id: id, platform_id: platform.id });
     }
     return this.repository.delete(id);
-  }
-
-  async updateAssociation({ game_id, platform_id }) {
-    await this.disassociate({ game_id, platform_id });
-    await this.associate({ game_id, platform_id });
   }
 
   associate({ game_id, platform_id }) {
