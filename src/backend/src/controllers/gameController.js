@@ -63,32 +63,6 @@ export class GameController {
     }
   }
 
-  async associatePlatform(req, res, next) {
-    try {
-      const { gameId, platformId } = req.params;
-      const result = await this.service.associate({
-        game_id: gameId,
-        platform_id: platformId,
-      });
-      res.status(200).json(result);
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async disassociatePlatform(req, res, next) {
-    try {
-      const { gameId, platformId } = req.params;
-      const result = await this.service.disassociate({
-        game_id: gameId,
-        platform_id: platformId,
-      });
-      res.status(200).json(result);
-    } catch (error) {
-      next(error);
-    }
-  }
-
   async findPlatforms(req, res, next) {
     try {
       const gameId = req.params.gameId;

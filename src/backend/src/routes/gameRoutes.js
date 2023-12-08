@@ -17,11 +17,5 @@ export const gameRoutes = (gameController) => {
   gameRouter
     .route("/:gameId/platforms")
     .get((req, res, next) => gameController.findPlatforms(req, res, next));
-  gameRouter
-    .route("/:gameId/platform/:platformId")
-    .post((req, res, next) => gameController.associatePlatform(req, res, next))
-    .delete((req, res, next) =>
-      gameController.disassociatePlatform(req, res, next)
-    );
   return gameRouter;
 };

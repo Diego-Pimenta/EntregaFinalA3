@@ -27,7 +27,7 @@ export class ImageSearchService {
       }
       return "";
     } catch (error) {
-      throw new HttpError("Error when searching for image!");
+      throw new HttpError(500, "Error when searching for image!");
     }
   }
 }

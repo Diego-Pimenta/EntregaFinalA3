@@ -19,7 +19,7 @@ export const findByPlatformIdQuery = `
 `;
 
 export const findPlatformsQuery = `
-   SELECT platforms.* FROM games_platforms INNER JOIN platforms ON games_platforms.game_id = platforms.id WHERE games_platforms.game_id = ?;
+   SELECT platforms.* FROM games_platforms INNER JOIN platforms ON games_platforms.platform_id = platforms.id WHERE games_platforms.game_id = ?;
 `;
 
 export const findAllQuery = `

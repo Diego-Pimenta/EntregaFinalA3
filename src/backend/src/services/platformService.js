@@ -7,23 +7,23 @@ export class PlatformService {
 
   async create({ name }) {
     let existingPlatform = await this.repository.findByName(name);
-    if (Object.keys(existingPlatform).length !== 0) {
-      throw new HttpError("Bad Request! Platform already exists!");
+    if (existingPlatform.length !== 0) {
+      throw new HttpError(409, "Conflict! Platform already exists!");
     }
     return this.repository.create({ name });
   }
 
   async findById(id) {
     const platform = await this.repository.findById(id);
-    if (Object.keys(platform).length === 0) {
-      throw new HttpError("Platform not found!");
+    if (platform.length === 0) {
+      throw new HttpError(404, "Platform not found!");
     }
     return platform;
   }
 
   async findByName(name) {
     const platform = await this.repository.findByName(name);
-    if (Object.keys(platform).length === 0) {
+    if (platform.length === 0) {
       throw new HttpError(404, "Platform not found!");
     }
     return platform;
@@ -33,16 +33,17 @@ export class PlatformService {
     return this.repository.findAll();
   }
 
-  async findPlatformGames(id) {
-    return await this.repository.findPlatformGames(id);
+  findPlatformGames(id) {
+    return this.repository.findPlatformGames(id);
   }
 
   async update(id, { name }) {
     let platform = await this.repository.findByName(name);
-    if (Object.keys(platform).length !== 0) {
+    if (platform.length !== 0) {
       if (platform[0].id != id) {
         throw new HttpError(
-          "Bad Request! Platform with this name already exists!"
+          409,
+          "Conflict! Platform with this name already exists!"
         );
       }
     }

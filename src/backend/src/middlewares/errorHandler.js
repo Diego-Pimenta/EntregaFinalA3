@@ -1,11 +1,9 @@
 export const errorHandler = (err, req, res, next) => {
-  console.error("Middleware Error Handling");
-  const errorStatus = err.status || 500;
-  const errorMsg = err.message || "Internal Server Error";
-  return res.status(errorStatus).json({
-    success: false,
-    status: errorStatus,
-    message: errorMsg,
-    // stack: err.stack,
+  console.error("Error in Error Handler Middleware");
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    status: statusCode,
+    message: message,
   });
 };

@@ -9,8 +9,8 @@ export class AuthService {
 
   async authenticateUser({ email, password }) {
     let user = await this.userService.findByEmail(email);
-    if (!user || password !== user[0].password) {
-      throw new HttpError("Invalid credentials!");
+    if (password !== user[0].password) {
+      throw new HttpError(401, "Invalid credentials!");
     }
     const token = jwt.sign({ userId: user[0].id }, jwtSecret, {
       expiresIn: "1h",
@@ -21,16 +21,16 @@ export class AuthService {
   async authorizeUser(token) {
     try {
       if (!token) {
-        throw new HttpError("Token not provided!");
+        throw new HttpError(401, "Token not provided!");
       }
       let decoded = jwt.verify(token, jwtSecret);
       const user = await this.userService.findById(decoded.userId);
       if (!user) {
-        throw new HttpError("User not authorized!");
+        throw new HttpError(403, "User not authorized!");
       }
       return user;
     } catch (error) {
-      throw new HttpError("Invalid token or expired!");
+      throw new HttpError(401, "Invalid token or expired!");
     }
   }
 }
