@@ -127,26 +127,12 @@ body {
     border-radius: 6px;
     border: 2px solid #ee6c4d;
     margin-left: 50px;
-  }
-
-  .btnLogout button {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    color: #ee6c4d;
     cursor: pointer;
     font-weight: bold;
+    color: #ee6c4d;
   }
 
-  .btnLogout button:hover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    border: none;
+  .btnLogout:hover {
     color: #151617;
     background-color: #ee6c4d;
     cursor: pointer;

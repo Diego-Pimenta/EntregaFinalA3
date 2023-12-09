@@ -3,12 +3,10 @@ import s from "./card.module.css";
 
 import fotoTeste from "../../assets/modal_tw3.png";
 
-import { Link } from "react-router-dom";
-
-export const CardGames = ({ urlImage, title, id }) => {
+export const CardGames = ({ urlImage, title, id, image }) => {
   return (
     <div className={s.card}>
-      <img src={fotoTeste} alt="game-image" />
+      <img src={image} alt="game-image" />
       <h1>{title}</h1>
     </div>
   );

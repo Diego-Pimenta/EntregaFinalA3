@@ -3,17 +3,52 @@ import { useState, useEffect } from "react";
 
 import s from "./header.module.css";
 
+import axios from "axios";
+
 import logo from "../../assets/logo-image.png";
 import { FiSearch } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import { IoIosMale } from "react-icons/io";
 import { IoIosFemale } from "react-icons/io";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = () => {
+  const navigate = useNavigate();
+
   const [showUserInfo, setShowUserInfo] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        if (token) {
+          const response = await axios.get(
+            "http://localhost:3001/auth/authorize",
+            {
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+
+          // Armazena os dados no estado do componente
+          setUserData(response.data);
+        } else {
+          // Tratar caso não haja token
+          console.error("Token não encontrado no localStorage.");
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    };
+
+    // Chama a função fetchData quando o componente é montado
+    fetchData();
+  }, []);
 
   useEffect(() => {
     // Função para verificar a largura da tela e atualizar o estado
@@ -35,6 +70,12 @@ export const Header = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+
+    navigate("/login");
+  };
+
   return (
     <>
       {isMobile ? (
@@ -48,9 +89,14 @@ export const Header = () => {
               {showUserInfo && (
                 <div className={s.user_modal}>
                   <h1>
-                    Fernando Caires <IoIosMale style={{ color: "blue" }} />
+                    {userData[0]?.username}
+                    {userData[0]?.gender === "masc" ? (
+                      <IoIosMale style={{ color: "blue" }} />
+                    ) : (
+                      <IoIosFemale style={{ color: "pink" }} />
+                    )}
                   </h1>
-                  <h1>fc.caires@hotmail.com</h1>
+                  <h1>{userData[0]?.email}</h1>
                   <Link to={"/login"} className={s.btnLogout}>
                     <button>Sair</button>
                   </Link>
@@ -110,12 +156,17 @@ export const Header = () => {
               {showUserInfo && (
                 <div className={s.user_modal}>
                   <h1>
-                    Fernando Caires <IoIosMale style={{ color: "blue" }} />
+                    {userData[0]?.username}
+                    {userData[0]?.gender === "masc" ? (
+                      <IoIosMale style={{ color: "blue" }} />
+                    ) : (
+                      <IoIosFemale style={{ color: "pink" }} />
+                    )}
                   </h1>
-                  <h1>fc.caires@hotmail.com</h1>
-                  <Link to={"/login"} className={s.btnLogout}>
-                    <button>Sair</button>
-                  </Link>
+                  <h1>{userData[0]?.email}</h1>
+                  <button className={s.btnLogout} onClick={handleLogout}>
+                    Sair
+                  </button>
                 </div>
               )}
             </div>

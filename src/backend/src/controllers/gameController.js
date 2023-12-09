@@ -33,6 +33,16 @@ export class GameController {
     }
   }
 
+  async findByTitle(req, res, next) {
+    try {
+      const title = req.params.title;
+      const result = await this.service.findByTitle(title);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async findAll(req, res, next) {
     try {
       const result = await this.service.findAll();

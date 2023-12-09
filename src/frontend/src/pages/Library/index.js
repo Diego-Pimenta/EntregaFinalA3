@@ -21,7 +21,6 @@ export const Library = () => {
         console.error("Erro ao fazer chamada para o backend:", error);
       }
     };
-    console.log(gamesData);
     fetchData();
   }, []);
 
@@ -52,12 +51,26 @@ export const Library = () => {
           <div className={s.section_title}>
             <h1>BIBLIOTECA</h1>
             <div className={s.container_btn}>
-              <Link to={"/newGame"}>
-                <button className={s.btn}>ADICIONAR NOVO JOGO</button>
-              </Link>
+              <button className={s.btn}>
+                <Link to={"/newGame"}>ADICIONAR NOVO JOGO</Link>
+              </button>
             </div>
           </div>
-          <div className={s.scroll}></div>
+          <div className={s.scroll}>
+            <div className={s.main_content}>
+              <div className={s.container_games}>
+                {gamesData.map((cardGame) => (
+                  <Link to={`/library/${cardGame.id}`}>
+                    <CardGames
+                      key={cardGame.id}
+                      title={cardGame.title}
+                      image={cardGame.image}
+                    />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
           <FooterNav />
         </div>
       ) : (
@@ -78,6 +91,7 @@ export const Library = () => {
                   <CardGames
                     key={cardGame.id}
                     title={cardGame.title}
+                    image={cardGame.image}
                   />
                 </Link>
               ))}

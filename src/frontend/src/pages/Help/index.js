@@ -47,7 +47,6 @@ export const Help = () => {
     };
   }, []);
 
-  console.log(data);
 
   return (
     <>

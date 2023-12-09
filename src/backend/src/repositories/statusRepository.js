@@ -38,6 +38,6 @@ export class StatusRepository {
   }
 
   delete(id) {
-    return this.db.delete(deleteQuery, [id]);
+    return this.db.query(deleteQuery, [id]);
   }
 }

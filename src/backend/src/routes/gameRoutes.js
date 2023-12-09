@@ -17,5 +17,8 @@ export const gameRoutes = (gameController) => {
   gameRouter
     .route("/:gameId/platforms")
     .get((req, res, next) => gameController.findPlatforms(req, res, next));
+  gameRouter
+    .route("/search/:title")
+    .get((req, res, next) => gameController.findByTitle(req, res, next));
   return gameRouter;
 };

@@ -26,68 +26,55 @@ const schema = yup.object().shape({
 export const Login = () => {
   const navigate = useNavigate();
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // Verificar se há um token armazenado localmente
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      // Simular uma verificação de token (pode ser mais sofisticada no seu aplicativo)
-      // Decodificar o token, verificar a validade, etc.
-      // Aqui, estamos apenas assumindo que o token é válido.
-      setLoggedIn(true);
-      setUser({ username: "usuario" });
-    }
-  }, []);
-
-  const handleLogin = async (username, password) => {
-    try {
-      const response = await axios.post("http://localhost:3001/users", {
-        username,
-        password,
-      });
-
-      // Armazenar o token localmente
-      localStorage.setItem("token", response.data.token);
-
-      setLoggedIn(true);
-      setUser({ username });
-    } catch (error) {
-      console.error("Erro ao fazer login:", error.message);
-    }
-  };
+  const [token, setToken] = useState(null);
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/users", data);
+      const resp = await axios.post("http://localhost:3001/auth/authenticate", {
+        email: watch("email"),
+        password: watch("password"),
+      });
 
-      // Armazenar o token localmente
-      localStorage.setItem("token", response.data.token);
-
-      // Atualizar o estado do componente
-      // ...
+      if (resp.status === 200) {
+        localStorage.setItem("token", resp.data.token);
+        setToken(resp.data.token);
+        navigate("/home");
+      } else {
+        console.error(
+          "Resposta inesperada do servidor:",
+          resp.status,
+          resp.data
+        );
+      }
     } catch (error) {
-      console.error("Erro ao fazer login:", error.message);
+      console.error("Erro durante a autenticação:", error);
     }
   };
 
-  const handleLogout = () => {
-    // Limpar o token armazenado localmente
-    localStorage.removeItem("token");
+  // const fetchData = async () => {
+  //   try {
+  //     const token = localStorage.getItem("token");
 
-    // Atualizar o estado do componente
-    // ...
-  };
+  //     const resp = await axios.get("http://localhost:3001/auth/authorize", {
+  //       headers: {
+  //         Authorization: `${token}`,
+  //       },
+  //     });
+
+  //     // Lida com a resposta do backend
+  //   } catch (error) {
+  //     console.error("Erro ao buscar dados:", error);
+  //   }
+  // };
 
   return (
     <div className={s.tela_desktop}>

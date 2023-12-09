@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import { Header } from "../../components/header";
 import { FooterNav } from "../../components/footerNav";
@@ -68,6 +69,8 @@ export const Home = () => {
     setModal4IsOpen(false);
   };
 
+  
+
   useEffect(() => {
     // Função para verificar a largura da tela e atualizar o estado
     const verificaLarguraTela = () => {
@@ -110,7 +113,7 @@ export const Home = () => {
                       pessoais agora mesmo e sem dificuldades
                     </p>
                   </div>
-                  <img src={gta5} alt="game-image" width="250"  />
+                  <img src={gta5} alt="game-image" width="250" />
                 </div>
                 <div className={s.container_secundary}>
                   <div className={s.header_secundary}>

@@ -76,15 +76,13 @@
   }
 
   .main_content::-webkit-scrollbar-thumb {
-    background-color: #EE6C4D;
+    background-color: #ee6c4d;
   }
 
   .footer {
     margin-top: 10px;
     color: #fff;
   }
-
-
 }
 
 @media (min-width: 320px) and (max-width: 780px) {
@@ -133,8 +131,8 @@
 
   .btn {
     font-weight: 700;
-    font-size: 16px;
-    height: 50px;
+    font-size: 14px;
+    height: 35px;
     width: 200px;
     background-color: transparent;
     color: #ee6c4d;
@@ -146,10 +144,10 @@
     align-items: center;
     cursor: pointer;
 
-    @media(max-width: 515px) {
+    @media (max-width: 515px) {
       height: 40;
       width: 150px;
-      font-size: 12px;
+      font-size: 10px;
     }
   }
 
@@ -157,4 +155,21 @@
     background-color: #ee6c4d;
     color: #141b26;
   }
+
+  .main_content {
+    margin-top: 20px;
+    width: 90vw;
+    height: 450px;
+  }
+
+  .container_games {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
 }

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 //pages
 import { Welcome } from "../pages/Welcome";
@@ -11,38 +11,41 @@ import { Help } from "../pages/Help";
 import { NewGame } from "../pages/NewGame";
 import { DetailsGame } from "../pages/DetailsGame";
 
+const isAuthenticated = !!localStorage.getItem("token");
+const redirectToLogin = () => <Navigate to="/login" replace />;
+
 export const router = createBrowserRouter([
   {
-    path: "",
+    path: "/",
     element: <Welcome />,
-    errorElement: <Error />,
+    errorElement: isAuthenticated ? <Error /> : <Login />,
   },
   {
-    path: "login",
+    path: "/login",
     element: <Login />,
   },
   {
-    path: "register",
+    path: "/register",
     element: <Register />,
   },
   {
-    path: "home",
-    element: <Home />,
+    path: "/home",
+    element: isAuthenticated ? <Home /> : redirectToLogin(),
   },
   {
-    path: "library",
-    element: <Library />,
+    path: "/library",
+    element: isAuthenticated ? <Library /> : redirectToLogin(),
   },
   {
-    path: "help",
-    element: <Help />,
+    path: "/help",
+    element: isAuthenticated ? <Help /> : redirectToLogin(),
   },
   {
-    path: "newGame",
-    element: <NewGame />,
+    path: "/newGame",
+    element: isAuthenticated ? <NewGame /> : redirectToLogin(),
   },
   {
     path: "/library/:id",
-    element: <DetailsGame />,
+    element: isAuthenticated ? <DetailsGame /> : redirectToLogin(),
   },
 ]);
