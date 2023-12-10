@@ -1,0 +1,174 @@
+@media (min-width: 781px) and (max-width: 2000px) {
+  .tela_desktop {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  .section_title {
+    width: 90vw;
+    height: 50px;
+    font-family: "Poppins", sans-serif;
+    color: #ee6c4d;
+    font-size: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .container_btn {
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn {
+    font-weight: 700;
+    font-size: 16px;
+    height: 50px;
+    width: 200px;
+    background-color: transparent;
+    color: #ee6c4d;
+    border-radius: 50px;
+    border: 2px solid #ee6c4d;
+    margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #ee6c4d;
+    color: #141b26;
+  }
+
+  .main_content {
+    margin-top: 20px;
+    width: 80vw;
+    height: 400px;
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .container_games {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  .main_content::-webkit-scrollbar {
+    background-color: #000000;
+    border: 1px solid #ee6c4d;
+  }
+
+  .main_content::-webkit-scrollbar-thumb {
+    background-color: #ee6c4d;
+  }
+
+  .footer {
+    margin-top: 10px;
+    color: #fff;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 780px) {
+  .tela_mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scroll {
+    height: 330px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 90vw;
+  }
+
+  .scroll::-webkit-scrollbar {
+    background-color: #000000;
+    border: 1px solid #ee6c4d;
+  }
+
+  .scroll::-webkit-scrollbar-thumb {
+    background-color: #ee6c4d;
+  }
+
+  .section_title {
+    width: 90vw;
+    height: 50px;
+    font-family: "Poppins", sans-serif;
+    color: #ee6c4d;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .container_btn {
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn {
+    font-weight: 700;
+    font-size: 14px;
+    height: 35px;
+    width: 200px;
+    background-color: transparent;
+    color: #ee6c4d;
+    border-radius: 50px;
+    border: 2px solid #ee6c4d;
+    margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    @media (max-width: 515px) {
+      height: 40;
+      width: 150px;
+      font-size: 10px;
+    }
+  }
+
+  .btn:hover {
+    background-color: #ee6c4d;
+    color: #141b26;
+  }
+
+  .main_content {
+    margin-top: 20px;
+    width: 90vw;
+    height: 450px;
+  }
+
+  .container_games {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+}

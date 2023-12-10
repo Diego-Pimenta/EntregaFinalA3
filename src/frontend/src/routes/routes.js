@@ -10,9 +10,10 @@ import { Library } from "../pages/Library";
 import { Help } from "../pages/Help";
 import { NewGame } from "../pages/NewGame";
 import { DetailsGame } from "../pages/DetailsGame";
+import { Search } from "../pages/Search";
 
 const isAuthenticated = !!localStorage.getItem("token");
-const redirectToLogin = () => <Navigate to="/login" replace />;
+const redirectToLogin = () =>  <Navigate to="/login" replace />;
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
   {
     path: "/library",
     element: isAuthenticated ? <Library /> : redirectToLogin(),
+  },
+  {
+    path: "/search/:title",
+    element: isAuthenticated ? <Search /> : redirectToLogin(),
   },
   {
     path: "/help",

@@ -68,17 +68,11 @@ export const Register = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3001/users");
-
-        // Faça o que for necessário com os dados da resposta
-        console.log("Dados recebidos:", response.data);
-      } catch (error) {
-        // Trate o erro, se necessário
-        console.error("Erro ao buscar dados:", error.message);
-      }
+      } catch (error) {}
     };
 
-    fetchData(); // Chama a função para buscar os dados quando o componente é montado
-  }, []); // O segundo argumento vaz
+    fetchData();
+  }, []);
   return (
     <div className={s.tela_desktop}>
       <ToastContainer />

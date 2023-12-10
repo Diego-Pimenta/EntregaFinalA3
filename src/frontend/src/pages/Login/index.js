@@ -9,7 +9,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
@@ -56,7 +57,7 @@ export const Login = () => {
         );
       }
     } catch (error) {
-      console.error("Erro durante a autenticação:", error);
+      toast.error("Email ou senha incorreta!");
     }
   };
 
@@ -78,6 +79,7 @@ export const Login = () => {
 
   return (
     <div className={s.tela_desktop}>
+      <ToastContainer />
       <div className={s.bg_image}>
         <img src={bgImage} alt="bg-image" />
       </div>

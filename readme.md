@@ -2,7 +2,7 @@
 
 ## Descrição
 
-O porjeto consiste em uma aplicação web para gerenciar o catálogo de jogos de um usuário.
+O projeto consiste em uma aplicação web para gerenciar o catálogo de jogos de um usuário.
 
 ## Requisitos
 

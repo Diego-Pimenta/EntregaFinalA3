@@ -7,7 +7,7 @@ import axios from "axios";
 import image from "../../assets/modal_tw3.png";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,6 +28,8 @@ const schema = yup.object().shape({
 });
 
 export const DetailsGame = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const {
     register,
@@ -43,7 +45,7 @@ export const DetailsGame = () => {
   const [gamesData, setGamesData] = useState([]);
   const [gradeData, setGradeData] = useState([]);
   const [platformData, setPlatformData] = useState([]);
-  // const [allPlatformData, setAllPlatformData] = useState([]);
+  const [allPlatformData, setAllPlatformData] = useState([]);
   const [statusData, setStatusData] = useState([]);
   //const [allStatusData, setAllStatusData] = useState([]);
 
@@ -53,9 +55,9 @@ export const DetailsGame = () => {
       const gradeUrl = `http://localhost:3001/grades/${id}`;
       // const platformsUrl = `http://localhost:3001/platforms/${id}`;
       const statusesUrl = `http://localhost:3001/statuses/${id}`;
-      const platformAssociation = `http://localhost:3001/games/${id}/platform/${watch(
-        "platformId"
-      )}`;
+      // const platformAssociation = `http://localhost:3001/games/${id}/platform/${watch(
+      //   "platformId"
+      // )}`;
 
       await Promise.all([
         axios.put(gameUrl, {
@@ -67,11 +69,12 @@ export const DetailsGame = () => {
           release_date: data.release_date,
           platform_id: data.platformId,
         }),
-        axios.put(gradeUrl, { grade: data.grade }),
-        axios.put(statusesUrl, { status: data.status }),
+        axios.put(gradeUrl, { grade: data.grade, gradeId: watch("gradeId") }),
+        axios.put(statusesUrl, {
+          status: data.status,
+        }),
       ]);
-
-      // const response = axios.post(platformAssociation, {});
+      window.location.reload();
     } catch (error) {
       toast.error("Erro ao editar jogo");
     }
@@ -87,9 +90,8 @@ export const DetailsGame = () => {
         axios.delete(gradeUrl),
         axios.delete(statusesUrl),
       ]);
-    } catch (error) {
-      console.log(error);
-    }
+      navigate("/library");
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -133,27 +135,27 @@ export const DetailsGame = () => {
     //   }
     // };
 
-    // const allPlatformData = async () => {
-    //   try {
-    //     const response = await axios.get(`http://localhost:3001/platforms`);
-    //     setAllPlatformData(response.data);
-    //   } catch (error) {
-    //     console.error("Erro ao fazer chamada para o backend:", error);
-    //   }
-    // };
+    const allPlatformData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/platforms`);
+        setAllPlatformData(response.data);
+      } catch (error) {
+        console.error("Erro ao fazer chamada para o backend:", error);
+      }
+    };
     const platformData = async () => {
       try {
         const response = await axios.get(
           `http://localhost:3001/games/${id}/platforms`
         );
-        setPlatformData(response.data);
+        setPlatformData(response?.data);
       } catch (error) {
         console.error("Erro ao fazer chamada para o backend:", error);
       }
     };
 
     platformData();
-    // allPlatformData();
+    allPlatformData();
     // allStatusData();
     statusData();
     gradesData();
@@ -276,17 +278,11 @@ export const DetailsGame = () => {
                         <option value={platformData[0]?.id}>
                           {platformData[0]?.name}
                         </option>
-                        <option value="1">Steam</option>
-                        <option value="2">Xbox</option>
-                        <option value="3">Origin</option>
-                        <option value="4">Epic Games</option>
-                        <option value="5">Playstation</option>
-                        <option value="6">Battle.net</option>
-                        <option value="7">Riot</option>
-                        <option value="8">Nintendo</option>
-                        <option value="9">uPlay</option>
-                        <option value="10">App Store</option>
-                        <option value="11">Play Store</option>
+                        {allPlatformData.map((platform) => (
+                          <option key={platform.id} value={platform.id}>
+                            {platform.name}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -417,17 +413,11 @@ export const DetailsGame = () => {
                       <option value={platformData[0]?.name}>
                         {platformData[0]?.name}
                       </option>
-                      <option value="1">Steam</option>
-                      <option value="2">Xbox</option>
-                      <option value="2">Origin</option>
-                      <option value="4">Epic Games</option>
-                      <option value="5">Playstation</option>
-                      <option value="6">Battle.net</option>
-                      <option value="7">Riot</option>
-                      <option value="8">Nintendo</option>
-                      <option value="9">uPlay</option>
-                      <option value="10">App Store</option>
-                      <option value="11">Play Store</option>
+                      {allPlatformData.map((platform) => (
+                        <option key={platform.id} value={platform.id}>
+                          {platform.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>

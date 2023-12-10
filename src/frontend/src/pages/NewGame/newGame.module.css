@@ -170,6 +170,11 @@
     display: flex;
     color: red;
   }
+
+  .btn_row {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 @media (min-width: 320px) and (max-width: 780px) {
@@ -355,5 +360,10 @@
 
   .error {
     color: red;
+  }
+
+  .btn_row {
+    display: flex;
+    justify-content: center;
   }
 }

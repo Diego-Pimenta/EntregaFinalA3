@@ -102,7 +102,7 @@ body {
     position: absolute;
     display: flex;
     flex-direction: column;
-    height: 100px;
+    height: 120px;
     width: 200px;
     background-color: #151617;
     border: 2px solid #ee6c4d;
@@ -120,16 +120,19 @@ body {
 
   .btnLogout {
     background-color: #151617;
-    display: flex;
-    width: 100px;
+    width: 80px;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     border-radius: 6px;
     border: 2px solid #ee6c4d;
-    margin-left: 50px;
+    margin-left: 10px;
     cursor: pointer;
     font-weight: bold;
     color: #ee6c4d;
+  }
+
+  .btnRow {
+    display: flex;
   }
 
   .btnLogout:hover {

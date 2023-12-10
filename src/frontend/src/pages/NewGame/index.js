@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 
 import s from "./newGame.module.css";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Header } from "../../components/header";
 import { FooterNav } from "../../components/footerNav";
 import { ModalPlatform } from "../../components/modalPlatform";
-
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -25,6 +27,7 @@ const schema = yup.object().shape({
 });
 
 export const NewGame = () => {
+  const navigate = useNavigate();
   const {
     register,
     watch,
@@ -124,7 +127,7 @@ export const NewGame = () => {
       const response = await axios.post(`http://localhost:3001/games`, data);
       setGameId(response.data.insertId);
     } catch (error) {
-      console.log(error);
+      toast.error("Falha ao crir jogo!");
     }
   };
 
@@ -150,15 +153,18 @@ export const NewGame = () => {
         game_id: gameId,
         status: data.status,
       });
+      toast.success("Jogo criado com sucesso!");
     } catch (error) {
-      console.log(error);
+      toast.error("Falha ao crir jogo!");
     }
   };
 
   return (
     <>
+      <ToastContainer />
       {isMobile ? (
         <>
+          <ModalPlatform isOpen={modalPlatform} closeModal={closeModal} />
           <div className={s.tela_mobile}>
             <Header />
             <div className={s.section_title}>
@@ -239,17 +245,11 @@ export const NewGame = () => {
                         {...register("platform_id")}
                       >
                         <option value={""}>Selecione a plataforma...</option>
-                        <option value="1">Steam</option>
-                        <option value="2">Xbox</option>
-                        <option value="3">Origin</option>
-                        <option value="4">Epic Games</option>
-                        <option value="5">Playstation</option>
-                        <option value="6">Battle.net</option>
-                        <option value="7">Riot</option>
-                        <option value="8">Nintendo</option>
-                        <option value="9">uPlay</option>
-                        <option value="10">App Store</option>
-                        <option value="11">Play Store</option>
+                        {allPlatformData.map((platform) => (
+                          <option key={platform.id} value={platform.id}>
+                            {platform.name}
+                          </option>
+                        ))}
                       </select>
                       {errors?.platform_id && (
                         <span className={s.error}>
@@ -306,10 +306,19 @@ export const NewGame = () => {
                       )}
                     </div>
                   </div>
-                  <div className={s.form_row}>
+                  <div className={s.btn_row}>
                     <div className={s.container_btn}>
                       <button id="btnLogin" className={s.btn} type="submit">
                         CADASTRAR NOVO JOGO
+                      </button>
+                    </div>
+                    <div className={s.container_btn}>
+                      <button
+                        className={s.btn}
+                        type="button"
+                        onClick={openModal}
+                      >
+                        Editar plataforma
                       </button>
                     </div>
                   </div>
@@ -404,17 +413,11 @@ export const NewGame = () => {
                         {...register("platform_id")}
                       >
                         <option value={""}>Selecione a plataforma...</option>
-                        <option value="1">Steam</option>
-                        <option value="2">Xbox</option>
-                        <option value="3">Origin</option>
-                        <option value="4">Epic Games</option>
-                        <option value="5">Playstation</option>
-                        <option value="6">Battle.net</option>
-                        <option value="7">Riot</option>
-                        <option value="8">Nintendo</option>
-                        <option value="9">uPlay</option>
-                        <option value="10">App Store</option>
-                        <option value="11">Play Store</option>
+                        {allPlatformData.map((platform) => (
+                          <option key={platform.id} value={platform.id}>
+                            {platform.name}
+                          </option>
+                        ))}
                       </select>
                       {errors?.platform_id && (
                         <span className={s.error}>
@@ -422,9 +425,6 @@ export const NewGame = () => {
                         </span>
                       )}
                     </div>
-                    <button type="button" onClick={openModal}>
-                      Editar plataforma
-                    </button>
                   </div>
                 </div>
                 <div className={s.form_row}>
@@ -473,10 +473,15 @@ export const NewGame = () => {
                     )}
                   </div>
                 </div>
-                <div className={s.form_row}>
+                <div className={s.btn_row}>
                   <div className={s.container_btn}>
                     <button id="btnLogin" className={s.btn} type="submit">
                       CADASTRAR NOVO JOGO
+                    </button>
+                  </div>
+                  <div className={s.container_btn}>
+                    <button className={s.btn} type="button" onClick={openModal}>
+                      Editar plataforma
                     </button>
                   </div>
                 </div>
