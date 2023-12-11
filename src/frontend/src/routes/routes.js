@@ -13,8 +13,9 @@ import { DetailsGame } from "../pages/DetailsGame";
 import { Search } from "../pages/Search";
 
 const isAuthenticated = !!localStorage.getItem("token");
-const redirectToLogin = () =>  <Navigate to="/login" replace />;
-
+const redirectToLogin = () => {
+  return <Navigate to="/login" replace />;
+};
 export const router = createBrowserRouter([
   {
     path: "/",

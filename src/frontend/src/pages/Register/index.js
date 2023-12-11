@@ -81,7 +81,9 @@ export const Register = () => {
       </div>
       <div className={s.container_main}>
         <div className={s.container_header}>
-          <img src={logo} alt="logo-image" width="90" />
+          <Link to={"/"}>
+            <img src={logo} alt="logo-image" width="90" />
+          </Link>
         </div>
         <div className={s.container_form}>
           <h1>CADASTRE-SE:</h1>

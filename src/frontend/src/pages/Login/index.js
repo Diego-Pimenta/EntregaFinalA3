@@ -85,7 +85,9 @@ export const Login = () => {
       </div>
       <div className={s.container_main}>
         <div className={s.container_header}>
-          <img src={logo} alt="logo-image" width="100" />
+          <Link to={"/"}>
+            <img src={logo} alt="logo-image" width="100" />
+          </Link>
         </div>
         <div className={s.container_form}>
           <h1>LOGIN:</h1>
