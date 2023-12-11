@@ -1,0 +1,247 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #151617;
+}
+
+@media (min-width: 781px) and (max-width: 2000px) {
+  .tela_desktop {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .header {
+    display: flex;
+    width: 95vw;
+    height: 100px;
+    border-bottom: 3px solid #fff;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .container_logo {
+    width: 100px;
+    height: 100%;
+  }
+
+  .container_nav {
+    width: 800px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    font-family: "Raleway", sans-serif;
+    color: #fff;
+    font-weight: 400;
+    font-size: 24px;
+    gap: 25px;
+  }
+
+  .nav li:hover {
+    color: #ee6c4d;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+
+  .container_search {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content_search {
+    background-color: #fff;
+    width: 289px;
+    height: 35px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 30px;
+  }
+
+  .search {
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    font-size: 15px;
+  }
+
+  .container_user {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+
+  .icon_user {
+    color: #ee6c4d;
+    height: 40px;
+    width: 60px;
+  }
+
+  .user_modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    width: 200px;
+    background-color: #151617;
+    border: 2px solid #ee6c4d;
+    margin-top: 150px;
+    border-radius: 6px;
+    box-shadow: 50px black;
+    margin-right: 10px;
+  }
+
+  .user_modal h1 {
+    font-size: 13px;
+    margin: 10px;
+    color: #fff;
+  }
+
+  .btnLogout {
+    background-color: #151617;
+    width: 80px;
+    justify-content: center;
+    align-items: start;
+    border-radius: 6px;
+    border: 2px solid #ee6c4d;
+    margin-left: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ee6c4d;
+  }
+
+  .btnRow {
+    display: flex;
+  }
+
+  .btnLogout:hover {
+    color: #151617;
+    background-color: #ee6c4d;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 780px) {
+  .tela_mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    border-bottom: 3px solid #fff;
+    justify-content: space-around;
+  }
+
+  .container_search {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content_search {
+    background-color: #fff;
+    width: 250px;
+    height: 35px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+  }
+
+  .search {
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    font-size: 15px;
+  }
+
+  .container_user {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .icon_user {
+    color: #ee6c4d;
+    height: 40px;
+    width: 60px;
+  }
+
+  .user_modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    width: 200px;
+    background-color: #151617;
+    border: 2px solid #ee6c4d;
+    margin-top: 150px;
+    border-radius: 6px;
+    box-shadow: 50px black;
+    margin-right: 10px;
+  }
+
+  .user_modal h1 {
+    font-size: 13px;
+    margin: 10px;
+    color: #fff;
+  }
+
+  .btnLogout {
+    background-color: #151617;
+    width: 80px;
+    justify-content: center;
+    align-items: start;
+    border-radius: 6px;
+    border: 2px solid #ee6c4d;
+    margin-left: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ee6c4d;
+  }
+
+  .btnRow {
+    display: flex;
+  }
+
+  .btnLogout:hover {
+    color: #151617;
+    background-color: #ee6c4d;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
