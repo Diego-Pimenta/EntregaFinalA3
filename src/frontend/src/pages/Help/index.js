@@ -11,7 +11,9 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import imgSlider1 from "../../assets/imageSlider1.png";
+import imgSlider1 from "../../assets/imgHelp1.png";
+import imgSlider2 from "../../assets/imgHelp2.png";
+import imgSlider3 from "../../assets/imgHelp3.png";
 
 import s from "./help.module.css";
 export const Help = () => {
@@ -24,8 +26,8 @@ export const Help = () => {
       id: "1",
       image: imgSlider1,
     },
-    { id: "2", image: imgSlider1 },
-    { id: "3", image: imgSlider1 },
+    { id: "2", image: imgSlider2 },
+    { id: "3", image: imgSlider3 },
   ];
 
   useEffect(() => {
@@ -46,7 +48,6 @@ export const Help = () => {
       window.removeEventListener("resize", verificaLarguraTela);
     };
   }, []);
-
 
   return (
     <>
