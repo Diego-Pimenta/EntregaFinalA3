@@ -23,8 +23,7 @@ export const Modal4 = ({ isOpen, closeModal }) => {
           src={Blood}
           alt="blood-borne"
           width={400}
-          height={502}
-          style={{ borderRadius: "15px 0px 0px 15px" }}
+          style={{ borderRadius: "15px 0px 0px 15px", height: "100%" }}
         />
       </div>
       <div className={s.modal_info}>
