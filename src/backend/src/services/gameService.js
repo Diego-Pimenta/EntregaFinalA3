@@ -47,7 +47,8 @@ export class GameService {
   }
 
   async findByTitle(title) {
-    title = title.split("-").join(" ");
+    // small adjustment for search works as it was intended
+    title = "%" + title.replace("-", " ") + "%";
     const game = await this.repository.findByTitle(title);
     if (game.length === 0) {
       throw new HttpError(404, "Game not found!");
